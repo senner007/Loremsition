@@ -20,7 +20,6 @@
 - possibly eliminate the need for having both height and width property on elt.props
 
 0.1
-- REname the plugin
 - Refactor shuffle method to scale out and in use the _scaleElems method, call cutoff method after shuffle
 - setChars function should update elt object as well, it does not work when moving to another container. should probably work in conjunction with the relayout method.
 - Dragging enable/disable/lock on individual items method

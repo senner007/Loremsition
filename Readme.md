@@ -8,7 +8,7 @@ Lorem chopsum
 - npm install
 
 ### Run
-- npm run dev
+- npm run dev - go to localhost:1234/vertical or localhost:1234/horizontal
 
 ### Fix
  - If parcel complains that functions are not functions you can:
