@@ -1,4 +1,4 @@
-import $ from 'jquery';
+
   
   import {
     _shuffle,
@@ -106,8 +106,9 @@ function setEltProto (param) {
     this.props.locked = false;
     // this.container = window.temporaryInstanceArray.length;
     this.adjCon = [];
-    this.options = $.extend({}, defaults, options);
-    this.props.cutOff = this.options.cutOff
+    // this.options = $.extend({}, defaults, options);
+    this.options = Object.assign({}, defaults, options);
+    this.props.cutOff = this.options.cutOff;
     this.props.dropLimit = this.options.dropLimit;
     this.ul.style[transformPrefix] = 'translate3d(0px,0px,0px)';
     this.props.ulSize = 0;
@@ -248,14 +249,19 @@ function setEltProto (param) {
     }
 
     if (counter == temporaryInstanceArray.length) {           // if all instances have been initialized
-      $.each(temporaryInstanceArray, function(index, instance) {
-        this.setInstances()
+
+      temporaryInstanceArray.forEach(v => {
+        v.setInstances();
+        v.div.dispatchEvent(setEvents.onLayoutAll);
+      })
+      // $.each(temporaryInstanceArray, function(index, instance) {
+      //   this.setInstances()
 
 
-        // $(value.div).trigger('layoutCompleteAll') // trigger callback on each instance
+      //   // $(value.div).trigger('layoutCompleteAll') // trigger callback on each instance
 
-        instance.div.dispatchEvent(setEvents.onLayoutAll)
-      });
+        
+      // });
 
       //temporaryInstanceArray = null
       // delete the global instance array
