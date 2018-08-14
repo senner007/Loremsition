@@ -21,6 +21,9 @@ Lorem chopsum
   - Firefox
   - Edge
 
+ ### Production use setup example:
+  - see prod folder
+
 ### Dependencies: 
  - none
 
