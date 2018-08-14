@@ -1,10 +1,6 @@
-import $ from 'jquery';
-import JumbleScramble from "../plugin_js/module_main.js"
-// ES6 MODULE IMPORT/EXPORT
-////////////////////////////
 
 
-export function horizontal () {
+export function horizontal (LoremChopsum, $) {
   $('.splitList').parent().remove();
   $('.bodyButton').remove()
   $('.container').show()
@@ -23,7 +19,7 @@ export function horizontal () {
 
   var winWidth = window.innerWidth; // recalculate windows height for cutoff on resize. Also run cutoff on resize
 
-  var cont1 = new JumbleScramble(elem, {
+  var cont1 = new LoremChopsum(elem, {
     isVertical: false,
     cutOff: winWidth,
     adjIds: [
@@ -33,7 +29,7 @@ export function horizontal () {
     ]
   })
 
-  var cont2 = new JumbleScramble(elem2, {
+  var cont2 = new LoremChopsum(elem2, {
     isVertical: false,
     cutOff: winWidth,
     adjIds: [
@@ -44,7 +40,7 @@ export function horizontal () {
     ]
    })
 
-   var cont3 = new JumbleScramble(elem3, {
+   var cont3 = new LoremChopsum(elem3, {
      isVertical: false,
     cutOff: winWidth,
   //  dropLimit: winWidth- winWidth/4,
@@ -55,7 +51,7 @@ export function horizontal () {
      ]
     })
 
-    var cont4 = new JumbleScramble(elem4, {
+    var cont4 = new LoremChopsum(elem4, {
       isVertical: false,
      cutOff: winWidth,
   //   dropLimit: winWidth- winWidth/4,

@@ -27,7 +27,7 @@ import $ from 'jquery';
   } from "./module_eltsReorder.js"
 
 
-  export default JumbleScramble;
+  export default LoremChopsum;
   // ES6 MODULE IMPORT/EXPORT
   ////////////////////////////
   function Elt (n, thisHeight, thisWidth, thisInst, eltObj) {
@@ -91,7 +91,7 @@ function setEltProto (param) {
   }
   var temporaryInstanceArray = [];
 
-  function JumbleScramble(element, options) { // Constructor function
+  function LoremChopsum(element, options) { // Constructor function
     // window.temporaryInstanceArray =  window.temporaryInstanceArray || [];
      // create the temporaryInstanceArray in the global scope
     this.props = {}; // The values that are to remain a reference as a shallow copy and update accordingly in adjInst must reside in a nested oobject.
@@ -122,30 +122,30 @@ function setEltProto (param) {
 
 
 
-  JumbleScramble.prototype.setCutOff = function (cutOff){
+  LoremChopsum.prototype.setCutOff = function (cutOff){
 
       this.props.cutOff = cutOff
   };
 
-  JumbleScramble.prototype.getInstances = function() {
+  LoremChopsum.prototype.getInstances = function() {
     // get object containing all instances, but without the proto
   }
 
-  JumbleScramble.prototype.lock = function() {
+  LoremChopsum.prototype.lock = function() {
     // Nothing can be dragged to or from this instance
     this.props.locked = true;
   }
 
-  JumbleScramble.prototype.unlock = function() {
+  LoremChopsum.prototype.unlock = function() {
     this.props.locked = false;
   }
 
-  JumbleScramble.prototype.crossDistance = function(thisInst, adjInst) {
+  LoremChopsum.prototype.crossDistance = function(thisInst, adjInst) {
     return this.options.isVertical ? (adjInst.props.divOffset.left - this.props.divOffset.left) : (adjInst.props.divOffset.top - this.props.divOffset.top);
   }
 
 
-  JumbleScramble.prototype.setInstances = function() {
+  LoremChopsum.prototype.setInstances = function() {
 
     var adjInstances = this.options.adjIds;                     //Refactor - too many loops
 
@@ -174,11 +174,11 @@ function setEltProto (param) {
 
 
 
-  JumbleScramble.prototype.getUlSize = function() {
+  LoremChopsum.prototype.getUlSize = function() {
     return this.props.ulSize;
   }
 
-  JumbleScramble.prototype.shuffle = _shuffle;
+  LoremChopsum.prototype.shuffle = _shuffle;
 
   /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -227,7 +227,7 @@ function setEltProto (param) {
   }
     /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-  JumbleScramble.prototype.init = function() {
+  LoremChopsum.prototype.init = function() {
 
     var lis = this.div.getElementsByTagName('li');
     this.elts = new Array(lis.length);
@@ -286,7 +286,7 @@ function setEltProto (param) {
   /*--------------------------------------------------------------------*/
 
 
-  JumbleScramble.prototype.reLayout = function() {
+  LoremChopsum.prototype.reLayout = function() {
 
 
     _setUlSize(_setEltsProps(this.elts, this), this) //setting properties function returns the ul size
@@ -297,7 +297,7 @@ function setEltProto (param) {
   /*------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-  JumbleScramble.prototype.cutOffEnd = function() { // function to remove the items above cutoff limit and then prepend the adjacent container
+  LoremChopsum.prototype.cutOffEnd = function() { // function to remove the items above cutoff limit and then prepend the adjacent container
 
     _scaleElems( _elemsToCut(this, this.adjInst) , this); //_elemsToCut function returns the elts to scale
 
@@ -308,7 +308,7 @@ function setEltProto (param) {
 
 
 
-  JumbleScramble.prototype.addLiElem = function(liText, liPosition, addTrans, setHeight, opacity = 1) {
+  LoremChopsum.prototype.addLiElem = function(liText, liPosition, addTrans, setHeight, opacity = 1) {
 
     //display param has an ES6 default value
 
@@ -366,7 +366,7 @@ function setEltProto (param) {
   /*------------------------------------------------------------------------------------------------------------------------*/
 
 
-  JumbleScramble.prototype.removeLiElem = function(elt, transition, callBack) { // Remove new li to previous collection
+  LoremChopsum.prototype.removeLiElem = function(elt, transition, callBack) { // Remove new li to previous collection
 
     if (elt == undefined) {return;} // if the requested elt to delete doesn't exist
     var n = elt.props.n,

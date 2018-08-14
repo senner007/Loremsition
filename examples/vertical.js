@@ -1,7 +1,5 @@
-import $ from 'jquery';
-import JumbleScramble from "../plugin_js/module_main.js"
 
-export function vertical () {
+export function vertical (LoremChopsum, $) {
     $('.splitList-horizontal').parent().remove();
     $('.bodyButton').remove()
     $('.container').show()
@@ -21,7 +19,7 @@ export function vertical () {
 
     var winHeight = window.innerHeight - 50; // recalculate windows height for cutoff on resize.
 var containers = [];
-    var cont1 = new JumbleScramble(elem1, {
+    var cont1 = new LoremChopsum(elem1, {
       isVertical: true,
       cutOff: winHeight,
       adjIds: [
@@ -34,7 +32,7 @@ var containers = [];
     })
 
 
-          var cont2 = new JumbleScramble(elem2, {
+          var cont2 = new LoremChopsum(elem2, {
             isVertical: true,
            // dropLimit: 500,
             cutOff: winHeight,
@@ -47,7 +45,7 @@ var containers = [];
             })
 
 
-    var cont3 = new JumbleScramble(elem3, {
+    var cont3 = new LoremChopsum(elem3, {
       isVertical: true,
       cutOff: winHeight,
       adjIds : [
@@ -58,7 +56,7 @@ var containers = [];
       ]
       })
 
-        var cont4 = new JumbleScramble(elem4, {
+        var cont4 = new LoremChopsum(elem4, {
           isVertical: true,
           cutOff: winHeight,
           adjIds : [
@@ -70,7 +68,7 @@ var containers = [];
           })
 
 
-        var cont5 = new JumbleScramble(elem5, {
+        var cont5 = new LoremChopsum(elem5, {
           isVertical: true,
           cutOff: winHeight,
           adjIds : [
