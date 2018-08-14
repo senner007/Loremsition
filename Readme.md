@@ -22,5 +22,5 @@ Lorem chopsum
   - Edge
 
 ### Dependencies: 
- - jQuery ? - latest ( soon to be removed )
+ - none
 
