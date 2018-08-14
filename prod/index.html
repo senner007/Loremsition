@@ -80,6 +80,12 @@
             })
 
             liInc(containers)
+            
+            containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
+                containers[0].addLiElem("<span class='special'></span>This element is added after the remove animate event",2, {elt:true,elts:true},{})
+                liInc(containers) 
+            })
+          
 
         }(LoremChopsum.default));
 

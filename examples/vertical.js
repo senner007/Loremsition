@@ -85,11 +85,11 @@ var containers = [];
      // SETUP CALLBACKS
      /////////////////////////////////////////
 
-    cont1.div.addEventListener('onLayout', function () {
-         //example of using the removeLiElem method on the object's prototype. Callback is fired when animation is done
-        // var toDelete = elem.find('li').eq(2)[0]
-        // cont1.removeLiElem(toDelete, true, function (){ })
-    //    cont1.addLiElem("This element is added after the 'layoutCompleteAll' event", 1, {elt:true,elts:true},)
+    cont2.div.addEventListener('onLayout', function () {
+        // example of using the removeLiElem method on the object's prototype. Callback is fired when animation is done
+       // var toDelete = elem.find('li').eq(2)[0]
+        //cont1.removeLiElem(toDelete, true, function (){ })
+       cont2.addLiElem("<span class='special'></span>This element is added after the 'layoutCompleteAll' event.",0, {elt:true,elts:true},{})
 
     })
     cont1.div.addEventListener('onReorder', function () {
