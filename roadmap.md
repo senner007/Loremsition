@@ -2,12 +2,9 @@
 
 2.0
 - set up css in options overwritring the css in css file
-- optionally implement logic to calculate animation speed based on the position of the dropped item relative to its new position
 
 0.2 - Plugin showcasing
 - Click items to delete (for showcasing)
-- Setup main page with Bulma css. Show all examples on one page and add a -show in full screen- link to each. Fetch each example module which are exporting objects with unique data.
-  * Make examples avaiable using the routes rewrite in htaccess. When using the routes, remove anything but the example and show in full screen.
 - Throttle the resize events
 - support for custom animations set in options
 - method to turn all animations on/off
@@ -26,12 +23,9 @@
 - Improve add and remove method. eg. all or an array as parameter, allow index(number) as elt selctor in removeLiElem
 - add boolean to cutOffEnd method which prevents the function from running if the cut-off element(s) will make adjacent container fire its cutoffEnd method and thereby creating an infinite loop.
 - Assume transition support
-- replace $.extend with object.assign
-- Remove jQuery dependency - Pointer events polyfill will still work without it
 - Call orientationChange event in place of resize on Chrome ios
 - use native event delegation https://stackoverflow.com/questions/14174056/native-addeventlistener-with-selector-like-on-in-jquery
 - when using a single list, allow the option to constrain to a single axis - http://www.javascriptkit.com/javatutors/touchevents.shtml(bottom)
-- allow jquery pointer polyfill as optional
 --------------------------------------------------
 - fix onReorder event to only show reorder on the desired instance
 - fix lock method
