@@ -31,10 +31,6 @@ var transitionPrefix = "webkitTransition" in testElement.style ? "-webkit-transi
 var transformPrefix = "webkitTransform" in testElement.style ? "-webkit-transform" : "-ms-transform" in testElement.style && transSupport == false ? "-ms-transform" : "transform"; //if ie9
 
 
-
-// ES6 MODULE IMPORT/EXPORT
-////////////////////////////
-
 var defaults = {
   isVertical: false,
   setChars: false,

@@ -8,28 +8,27 @@ import $ from 'jquery';
     transitionPrefix,
     transformPrefix,
     ifGpu
-  } from "./module_utils.js"
+  } from "./utils.js"
 
 
   import {
     _addEventHandlers
-  } from "./module_handlers.js"
+  } from "./handlers.js"
 
   import {
     _animateBack,
     _transToZero,
     _scaleElems
-  } from "./module_animation.js"
+  } from "./animation.js"
 
   import {
       eltsReorder,
       _elemsToCut
-  } from "./module_eltsReorder.js"
+  } from "./eltsReorder.js"
 
 
   export default LoremChopsum;
-  // ES6 MODULE IMPORT/EXPORT
-  ////////////////////////////
+
   function Elt (n, thisHeight, thisWidth, thisInst, eltObj) {
     var isVertical = thisInst.options.isVertical == true;
 
@@ -257,7 +256,6 @@ function setEltProto (param) {
 
         instance.div.dispatchEvent(setEvents.onLayoutAll)
       });
-      console.log(temporaryInstanceArray)
 
       //temporaryInstanceArray = null
       // delete the global instance array

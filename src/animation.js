@@ -1,14 +1,13 @@
 import {
   setEvents
-} from "./module_utils.js"
+} from "./utils.js"
 
 export {
   _animateBack,
   _transToZero,
   _scaleElems
 };
-// ES6 MODULE IMPORT/EXPORT
-////////////////////////////
+
 
 function _transToZero(elt, thisInst, speed) {
   if (speed == undefined) { var speed = '250ms ease' }

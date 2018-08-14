@@ -1,13 +1,11 @@
 import {
     _onDrag,
     _onStop
-  } from "./module_eltsReorder.js"
+  } from "./eltsReorder.js"
   export {
     _addEventHandlers
   }
-  // ES6 MODULE IMPORT/EXPORT
-  ////////////////////////////
-  
+
   function _addEventHandlers(thisInst) {
   
     var isTouch = (function is_touch_device() {

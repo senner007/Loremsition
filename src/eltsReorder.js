@@ -2,17 +2,12 @@
 import {
   _elemsToCut,
   setEvents
-} from "./module_utils.js"
+} from "./utils.js"
 import {
   _animateBack,
   _scaleElems,
   _transToZero
-} from "./module_animation.js"
-
-
-// ES6 MODULE IMPORT/EXPORT
-////////////////////////////
-
+} from "./animation.js"
 
 var posObj = {}
 
