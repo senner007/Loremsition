@@ -56,7 +56,21 @@ function _findNext(thisInst, adjInst) {   // find instance by offset which is af
   return next;
 }
 
+function getFirstInstance(thisInst) {
+  var plane = thisInst.options.isVertical ? 'left' : 'top';
+  var lowest = thisInst;
+
+  thisInst.adjCon.forEach(v => {
+    if ( lowest === undefined || thisInst[v].props.divOffset[plane] < lowest.props.divOffset[plane]) {
+      lowest = thisInst[v]
+    }
+  })
+  return lowest;
+}
+
+
 function _elemsToCut(thisInst, adjInst) {
+
   if (adjInst.props.cutOff == false) {
     return function() {};
   }
@@ -65,15 +79,16 @@ function _elemsToCut(thisInst, adjInst) {
       ulSize = thisInst.getUlSize.call(adjInst),
       counter = -1;
 
-  //  console.log(size)
   while (ulSize > adjInst.props.cutOff) {
+  
 
     elemsToCut.push(adjInst.elts[adjInst.elts.length + counter])
     ulSize -= adjInst.elts[adjInst.elts.length + counter].props.size
     counter -= 1
   }
   var next = _findNext(thisInst, adjInst);
-  var instToAddTo = next != undefined ? next : thisInst;
+
+  var instToAddTo = next != undefined ? next : getFirstInstance(thisInst); // if drop to last instance: cutoff to first instance
 
   var addedElemsArray = [];
   if (elemsToCut.length != 0) {
