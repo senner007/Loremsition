@@ -292,32 +292,42 @@ function setEltProto (param) {
 
   LoremChopsum.prototype.reLayout = function() {
 
-
+    var _this = this;
+    
     _setUlSize(_setEltsProps(this.elts, this), this) //setting properties function returns the ul size
+    this.props.divWidth = _outerWidth(this.div)
     this.props.divOffset = jsOffset(this.div)
 
+    this.adjCon.forEach(v => {
+      _this[v].distanceTo = _this.crossDistance(_this, _this[v])
+    })
 
   };
   /*------------------------------------------------------------------------------------------------------------------------------------*/
 
 
   LoremChopsum.prototype.cutOffEnd = function() { // function to remove the items above cutoff limit and then prepend the adjacent container
+  
 
-    _scaleElems( _elemsToCut(this, this.adjInst) , this); //_elemsToCut function returns the elts to scale
+    // console.log(this[this.adjCon[0]])
+    _scaleElems( _elemsToCut(this, this ), this); //_elemsToCut function returns the elts to scale
 
   };
 
 
   /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+  // es6 defaults:
+  // liPosition : defaults to last position
+  // addTrans: deafults to animate li and surrounding elems
+  // setHeight: defaults to automatically retrieved height/width
 
-
-  LoremChopsum.prototype.addLiElem = function(liText, liPosition, addTrans, setHeight, opacity = 1) {
+  LoremChopsum.prototype.addLiElem = function(liText, setPos = this.elts.length, addTrans = {elt:true,elts:true}, setHeight = {}, opacity = 1) {
 
     //display param has an ES6 default value
 
     var thisElts = this.elts;
-    var liPosition = Math.min(Math.max(parseInt(liPosition), 0), thisElts.length); // this is to make sure that the insert position is not greater than the number of elts present.
+    var liPosition = Math.min(Math.max(parseInt(setPos), 0), thisElts.length); // this is to make sure that the insert position is not greater than the number of elts present.
     var n = thisElts.length,
       o = this.options,
       tempArr = [];
