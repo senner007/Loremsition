@@ -7,13 +7,16 @@ Lorem chopsum
 ### Install dependencies:
 - npm install
 
-### Run
+### To Run
 - npm run dev - go to localhost:1234/vertical or localhost:1234/horizontal
 
 ### Fix
  - If parcel complains that functions are not functions you can:
  - 1. remove the cache dir, or
  - 2. repeat the install process
+
+ ### To build
+- npm run build
 
  ### Browser support:
   <!-- - IE 10+ -->

@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     library: 'LoremChopsum', // set as global var
-    filename: 'index.js',
+    filename: 'lorem-chopsum.js',
     path: path.resolve(__dirname, 'prod')
   },
   module: {
