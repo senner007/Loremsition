@@ -13,17 +13,17 @@
 		<div class="grid-vertical">
 			<div class='chopsum-vertical' id='chopsum-vertical-1'>
 				<ul class='chopsum-list-vertical'>
-				  <li class='listItem'><span class='special'></span>Lorizzle break it down dolizzle sit amizzle, get down get down adipiscing break yo neck, yall. Nullizzle cool velit, aliquet volutpizzle, suscipit quis, dope vizzle, gangster. Pellentesque daahng dawg pizzle. Sizzle eros. Dang sheezy dolor dapibizzle we gonna chung tempizzle yo mamma.</li>
-				  <li class='listItem'><span class='special'></span>Maurizzle fo shizzle my nizzle nibh izzle turpizzle. Pimpin' izzle things. Crazy gangsta rhoncizzle nisi. Crackalackin away bow wow wow platea dictumst. Yo mamma dapibizzle. The bizzle tellizzle urna, pretizzle eu, mattis yo, eleifend vitae, sizzle. Away suscipizzle.</li>
-				  <li class='listItem'><span class='special'></span>Sheezy semper velit my shizz uhuh ... yih!.</li>
+				  <li class='listItem'>Lorizzle break it down dolizzle sit amizzle, get down get down adipiscing break yo neck, yall. Nullizzle cool velit, aliquet volutpizzle, suscipit quis, dope vizzle, gangster. Pellentesque daahng dawg pizzle. Sizzle eros. Dang sheezy dolor dapibizzle we gonna chung tempizzle yo mamma.</li>
+				  <li class='listItem'>Maurizzle fo shizzle my nizzle nibh izzle turpizzle. Pimpin' izzle things. Crazy gangsta rhoncizzle nisi. Crackalackin away bow wow wow platea dictumst. Yo mamma dapibizzle. The bizzle tellizzle urna, pretizzle eu, mattis yo, eleifend vitae, sizzle. Away suscipizzle.</li>
+				  <li class='listItem'>Sheezy semper velit my shizz uhuh ... yih!.</li>
 				</ul>
 			</div>
 				
 			<div class='chopsum-vertical' id='chopsum-vertical-2'>
 				<ul class='chopsum-list-vertical'>
-					<li class='listItem'><span class='special'></span>Phat shiznit lorem, pulvinar izzle, i saw beyonces tizzles and my pizzle went crizzle egizzle, vehicula gangster, dizzle. Etizzle ma nizzle leo a sem hendrerizzle mattizzle. Gangster interdizzle pot break yo neck, yall own yo' commodo ullamcorper. Etizzle lobortis fermentum shizznit. Morbi odio. Shizznit quizzle metizzle dang dolor mah nizzle auctizzle. Integer sagittizzle dang urna.</li>
-					<li class='listItem'><span class='special'></span>The bizzle sapizzle gangster, ultrices nizzle, accumsizzle yo mamma, shiznit quis, pede. Dizzle nizzle libero. Etiam nizzle ornare ante. Shiz fo shizzle. Vestibulizzle izzle rizzle varius nibh we gonna chung commodo. </li>
-					<li class='listItem'><span class='special'></span>Lorem fo dolor sit amet, consectetuer crackalackin elizzle. Sizzle izzle gangsta. Quisque gangsta sem, sodalizzle et, stuff a, eleifend a, pimpin'.</li>
+					<li class='listItem'>Phat shiznit lorem, pulvinar izzle, i saw beyonces tizzles and my pizzle went crizzle egizzle, vehicula gangster, dizzle. Etizzle ma nizzle leo a sem hendrerizzle mattizzle. Gangster interdizzle pot break yo neck, yall own yo' commodo ullamcorper. Etizzle lobortis fermentum shizznit. Morbi odio. Shizznit quizzle metizzle dang dolor mah nizzle auctizzle. Integer sagittizzle dang urna.</li>
+					<li class='listItem'>The bizzle sapizzle gangster, ultrices nizzle, accumsizzle yo mamma, shiznit quis, pede. Dizzle nizzle libero. Etiam nizzle ornare ante. Shiz fo shizzle. Vestibulizzle izzle rizzle varius nibh we gonna chung commodo. </li>
+					<li class='listItem'>Lorem fo dolor sit amet, consectetuer crackalackin elizzle. Sizzle izzle gangsta. Quisque gangsta sem, sodalizzle et, stuff a, eleifend a, pimpin'.</li>
 				</ul>
 			</div>	
 		</div>
@@ -37,27 +37,6 @@
             var elem1 = document.getElementById('chopsum-vertical-1');
             var elem2 = document.getElementById('chopsum-vertical-2');
             var winHeight = window.innerHeight - 50; // recalculate windows height for cutoff on resize.
-
-            function liInc() {
-            var counter = 1;
-                loopContainers(function (el) {
-                    for (let i = 0; i < el.elts.length; i++) {
-                        var myText = counter + 'th'
-                        if (counter == 1) {
-                            myText = counter + 'st'
-                        }
-                        if (counter == 2) {
-                             myText = counter + 'nd'
-                        }
-                        if (counter == 3) {
-                             myText = counter + 'rd'
-                        }
-
-                        el.elts[i].childNodes[0].textContent = myText
-                        counter++;
-                    }
-                })
-            }
 
             function loopContainers(fn) {
                 containers.forEach(fn)
@@ -82,25 +61,17 @@
             ]
 
             loopContainers(v => {
-                v.div.addEventListener('onDropTo', function (ev) {
-                    liInc(containers)
-                })
                 v.init();
             })
-
-            liInc(containers)
-            
+           
             containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
                 containers[1].addLiElem("<span class='special'></span>This element was added after the remove animate event", 0 , {elt:true,elts:true})
-                liInc(containers) 
                 loopContainers(v => v.reLayout())
             })
 
             window.addEventListener('resize', function () {
                 loopContainers(v => v.cutOff = window.innerHeight - 50)
-
                 loopContainers(v => v.cutOffEnd())
-                liInc()
                 loopContainers(v => v.reLayout())
             });
           

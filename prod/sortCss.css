@@ -36,11 +36,6 @@ li {
   color: rgba(68, 68, 68, 1);
 }
 
-.special {
-  font-size: 36px;
-  padding: 3px;
-  color: rgba(68, 68, 68, 1);
-}
 
 li:active {
   cursor: -webkit-grabbing;
