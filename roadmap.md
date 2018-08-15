@@ -5,7 +5,6 @@
 
 0.2 - Plugin showcasing
 - Click items to delete (for showcasing)
-- Throttle the resize events
 - support for custom animations set in options
 - method to turn all animations on/off
 - getInstances() should point to array of all instances but without prototypes (Object.assign)
@@ -31,7 +30,6 @@
 - fix lock method
 - call scale method in removeLiElem
 - allow option to cutoff to specified instance
-- recalculate adjInst(n).distanceTo & props.divWidth/divHeight on reLayout
 - allow shuffle method with no parameters, otherwise should take an array of instances
 - Use normalize.css
 - Allow vertical instances to be placed vertically above/under. Create example with 4 vertical instances aligned horizontally which then realigns to 2 above and 2 under in landscape mode.
@@ -41,6 +39,7 @@
 - Set initial div.id on elt
 - return elt, elts, thisInst and thisInst.newInst with onDropTo, onDropFrom callbacks
 - allow user to specify delay before animating elements
+
 
 Fixed:
 - allow dragging and dropping over other instances 
@@ -86,6 +85,7 @@ ThisInst.left + thisInst.w /2 > thisInst[p].left && ThisInst.left + thisInst.w /
 - allow individual width of each instance in vertical
 - Setup with css grid
 - define getter and setter for position, size
+- recalculate adjInst(n).distanceTo & props.divWidth/divHeight on reLayout
 
 Partially fixed:
 - prevent multitouch !!! - The element will freeze and animate back if multi touch is detected. Find a way to simple ignore additional touches
