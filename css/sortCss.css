@@ -4,7 +4,6 @@
   font-family: "Times New Roman", Times, serif;
 }
 
-/*box sizing fix to make sure that elements don't grow when applying border https://www.paulirish.com/2012/box-sizing-border-box-ftw/*/
 html {
   box-sizing: border-box;
 }
@@ -17,23 +16,14 @@ body {
   overflow: hidden;
   background-image: url('images/3_lighter2.jpg');
   background-repeat: repeat;
-  /*counter-reset: section;*/
+  user-select: none;
 }
-
-/* @font-face {
-  font-family: 'UnderwoodChampionRegular';
-  src: url('fonts/underwood_champion-webfont.eot');
-  src: url('fonts/underwood_champion-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/underwood_champion-webfont.woff') format('woff'), url('fonts/underwood_champion-webfont.ttf');
-  font-weight: normal;
-  font-style: normal;
-} */
 
 .container {
   margin: 0;
   position: absolute;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
-  height: 90%;
 }
 
 div:active {
@@ -47,25 +37,10 @@ li {
   color: rgba(68, 68, 68, 1);
 }
 
-
-/*This classcauses randomly occurring gaps between elements :*/
-
-
-/*li::before {
-  counter-increment: section;
-  content: counter(section) '0' counter(section);
-  font-size: 60px;
-  padding: 3px;
-  color: rgba(68, 68, 68, 1);
-  font-family: 'UnderwoodChampionRegular';
-
-}*/
-
 .special {
   font-size: 36px;
   padding: 3px;
   color: rgba(68, 68, 68, 1);
-  /* font-family: 'UnderwoodChampionRegular'; */
 }
 
 li:active {

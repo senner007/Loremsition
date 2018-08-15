@@ -1,6 +1,6 @@
 .grid-vertical {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr 3fr;
 }
 
 /* #chopsum-vertical-1, #chopsum-vertical-2, #chopsum-vertical-3, #chopsum-vertical-4, #chopsum-vertical-5 {

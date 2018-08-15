@@ -6,9 +6,8 @@ export function vertical(LoremChopsum) {
   var elem2 = document.getElementById('chopsum-vertical-2');
   var elem3 = document.getElementById('chopsum-vertical-3');
   var elem4 = document.getElementById('chopsum-vertical-4');
-  var elem5 = document.getElementById('chopsum-vertical-5');
 
-  var winHeight = window.innerHeight - 50; // recalculate windows height for cutoff on resize.
+  var winHeight = window.innerHeight - 20; // recalculate windows height for cutoff on resize.
 
   var containers = [
     new LoremChopsum(elem1, {
@@ -17,8 +16,7 @@ export function vertical(LoremChopsum) {
       adjIds: [
         elem2.id,
         elem3.id,
-        elem4.id,
-        elem5.id
+        elem4.id
       ]
     }),
     new LoremChopsum(elem2, {
@@ -28,8 +26,7 @@ export function vertical(LoremChopsum) {
       adjIds: [
         elem1.id,
         elem3.id,
-        elem4.id,
-        elem5.id
+        elem4.id
       ]
     }),
     new LoremChopsum(elem3, {
@@ -38,8 +35,7 @@ export function vertical(LoremChopsum) {
       adjIds: [
         elem1.id,
         elem2.id,
-        elem4.id,
-        elem5.id
+        elem4.id
       ]
     }),
     new LoremChopsum(elem4, {
@@ -48,18 +44,7 @@ export function vertical(LoremChopsum) {
       adjIds: [
         elem1.id,
         elem2.id,
-        elem3.id,
-        elem5.id
-      ]
-    }),
-    new LoremChopsum(elem5, {
-      isVertical: true,
-      cutOff: winHeight,
-      adjIds: [
-        elem1.id,
-        elem2.id,
-        elem3.id,
-        elem4.id
+        elem3.id
       ]
     })
   ];
@@ -167,7 +152,7 @@ export function vertical(LoremChopsum) {
 
   resizeThrottle(function () {
     console.log('resizing!')
-    loopContainers(v => v.cutOff = window.innerHeight - 50)
+    loopContainers(v => v.cutOff = window.innerHeight - 20)
 
 
     // example of using the cutOffEnd method on the object's prototype.
