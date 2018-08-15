@@ -36,7 +36,7 @@
         
             var elem1 = document.getElementById('chopsum-vertical-1');
             var elem2 = document.getElementById('chopsum-vertical-2');
-            var winHeight = window.innerHeight - 50; // recalculate windows height for cutoff on resize.
+            var winHeight = window.innerHeight - 20; // recalculate windows height for cutoff on resize.
 
             function loopContainers(fn) {
                 containers.forEach(fn)
@@ -52,7 +52,6 @@
                 }),
                 new LoremChopsum(elem2, {
                     isVertical: true,
-                // dropLimit: 500,
                     cutOff: winHeight,
                     adjIds : [
                         elem1.id
@@ -65,12 +64,12 @@
             })
            
             containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
-                containers[1].addLiElem("<span class='special'></span>This element was added after the remove animate event", 0 , {elt:true,elts:true})
+                containers[1].addLiElem("This element was added after the remove animate event", 0, {elt:true,elts:true})
                 loopContainers(v => v.reLayout())
             })
 
             window.addEventListener('resize', function () {
-                loopContainers(v => v.cutOff = window.innerHeight - 50)
+                loopContainers(v => v.cutOff = window.innerHeight - 20)
                 loopContainers(v => v.cutOffEnd())
                 loopContainers(v => v.reLayout())
             });
