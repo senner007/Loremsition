@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>ChopSlicks</title>
+	<title>Lorem Chopsum</title>
 	<link rel="stylesheet" href="sortCss.css" title="ios">
 	<link rel="stylesheet" href="vertical.css" title="ios">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
@@ -38,20 +38,29 @@
             var elem2 = document.getElementById('chopsum-vertical-2');
             var winHeight = window.innerHeight - 50; // recalculate windows height for cutoff on resize.
 
-            function liInc (containers) {
-                var counter = 1;
-                containers.forEach(cont => {
-                     for (let i = 0; i<cont.elts.length; i++) {
+            function liInc() {
+            var counter = 1;
+                loopContainers(function (el) {
+                    for (let i = 0; i < el.elts.length; i++) {
                         var myText = counter + 'th'
-                        if (counter == 1) { myText = '1st'}
-                        if (counter == 2) { myText = '2nd'}
-                        if (counter == 3) { myText = '3rd'}
+                        if (counter == 1) {
+                            myText = counter + 'st'
+                        }
+                        if (counter == 2) {
+                             myText = counter + 'nd'
+                        }
+                        if (counter == 3) {
+                             myText = counter + 'rd'
+                        }
 
-                        cont.elts[i].childNodes[0].textContent = myText
+                        el.elts[i].childNodes[0].textContent = myText
                         counter++;
                     }
-                    cont.reLayout()
-                });
+                })
+            }
+
+            function loopContainers(fn) {
+                containers.forEach(fn)
             }
 
             var containers = [
@@ -72,7 +81,7 @@
                 })
             ]
 
-            containers.forEach(v => {
+            loopContainers(v => {
                 v.div.addEventListener('onDropTo', function (ev) {
                     liInc(containers)
                 })
@@ -82,9 +91,18 @@
             liInc(containers)
             
             containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
-                containers[0].addLiElem("<span class='special'></span>This element is added after the remove animate event",2, {elt:true,elts:true},{})
+                containers[1].addLiElem("<span class='special'></span>This element was added after the remove animate event", 0 , {elt:true,elts:true})
                 liInc(containers) 
+                loopContainers(v => v.reLayout())
             })
+
+            window.addEventListener('resize', function () {
+                loopContainers(v => v.cutOff = window.innerHeight - 50)
+
+                loopContainers(v => v.cutOffEnd())
+                liInc()
+                loopContainers(v => v.reLayout())
+            });
           
 
         }(LoremChopsum.default));

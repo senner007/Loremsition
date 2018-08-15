@@ -3,7 +3,7 @@ import {vertical} from "./examples/vertical.js"
 import {horizontal } from "./examples/horizontal.js"
 import LoremChopsum from './src/main.js'
 
-$('.container').hide(); // cannot be set from css ???
+//$('.container').hide(); // cannot be set from css ???
 
 (function () {
     var path = window.location.pathname.split('/');
@@ -12,7 +12,9 @@ $('.container').hide(); // cannot be set from css ???
         horizontal(LoremChopsum, $);
     }
     else  {
+        $('.splitList-horizontal').parent().remove();
         vertical(LoremChopsum, $);
+
     } 
 }());
 
@@ -32,4 +34,5 @@ $('.container').hide(); // cannot be set from css ???
     });
   
 }());
+
 
