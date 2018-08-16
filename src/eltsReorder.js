@@ -190,13 +190,10 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
       completeWidth: elt.props.completeWidth
       }
 
-
-
     thisInst.added = thisInst.addLiElem.call(thisInst.newInst, elt.innerHTML, insertPos, {
       elt: false,
       elts: true
     }, setHeight, opacity);
-
 
   },
   _deleteElt: function(thisInst) { // going back to the originating container
@@ -293,6 +290,8 @@ var eltsReorder = {
 
 function _onStop(elt, thisInst) { // Stop
 
+  
+
   /////////////////////////////////
   //  delete thisInst.emptySpace;
   ////////////////////////////////////
@@ -316,6 +315,8 @@ function _onStop(elt, thisInst) { // Stop
 
 
   if (thisInst.crossFlag == true && thisInst.newInst) { // going to new container
+    
+    elt.locked = true;
 
     thisInst.lock.call(thisInst.newInst);
 
