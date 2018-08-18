@@ -236,20 +236,17 @@ function setEltProto (param) {
 
     _addEventHandlers(this);
 
-    this.init = true;
+    this.isInit = true;
   
     this.div.dispatchEvent(setEvents.onLayout) // onLayout event
 
-    var counter = 0;
-
-    for (var i = 0; i < temporaryInstanceArray.length; i++) { // loop over the array and get all instances that have been initialized
-      if (temporaryInstanceArray[i].init == true) {
-        counter++
-      }
+    function countInit() {
+      return temporaryInstanceArray.reduce((acc,b) => { // loop over the array and get all instances that have been initialized
+        return acc + (b.isInit ? 1 : 0)
+      },0) 
     }
 
-    if (counter == temporaryInstanceArray.length) {           // if all instances have been initialized
-
+    if (countInit() == temporaryInstanceArray.length) {           // if all instances have been initialized
       temporaryInstanceArray.forEach(v => {
         v.setInstances();
         v.div.dispatchEvent(setEvents.onLayoutAll);
