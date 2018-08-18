@@ -9,12 +9,14 @@
 
 .chopsum-vertical {
   display: block;
+  transform: translateZ(0); /* don't kow if it helps */
 }
 
 .chopsum-list-vertical {
   display: block;
   z-index: 1;
   margin: 5px;
+  transform: translateZ(0); /* don't kow if it helps */
 }
 
 .listItem {
@@ -27,6 +29,7 @@
   line-height: 19px;
   border-radius: 1px;
  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+ transform: translateZ(0);  /* don't kow if it helps */
   /* border-left: 2px solid #777; */
   /*text-align: justify;
     text-justify: inter-word;*/
