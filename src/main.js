@@ -247,24 +247,11 @@ function setEltProto (param) {
     }
 
     if (countInit() == temporaryInstanceArray.length) {           // if all instances have been initialized
-      temporaryInstanceArray.forEach(v => {
-        v.setInstances();
-        v.div.dispatchEvent(setEvents.onLayoutAll);
-      })
-      // $.each(temporaryInstanceArray, function(index, instance) {
-      //   this.setInstances()
-
-
-      //   // $(value.div).trigger('layoutCompleteAll') // trigger callback on each instance
-
-        
-      // });
-
-      //temporaryInstanceArray = null
-      // delete the global instance array
+        temporaryInstanceArray.forEach(v => {
+          v.setInstances();
+          v.div.dispatchEvent(setEvents.onLayoutAll);
+        })
     }
-
-
   };
 
   /*--------------------------------------------------------------------*/
