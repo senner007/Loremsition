@@ -99,8 +99,11 @@ function _elemsToCut(thisInst, adjInst) {
         completeWidth: elemsToCut[i].completeWidth
       }
 
+      instToAddTo.options.guessHeight = false;
       addedElemsArray.push(thisInst.addLiElem.call(instToAddTo, elemsToCut[i].innerHTML, 0, {elt: false, elts: true}, setHeight))
       thisInst.removeLiElem.call(adjInst, adjInst.elts[adjInst.elts.length - 1], adjInst.transSupport, false)
+      instToAddTo.options.guessHeight = true;
+  
     }
 
   }

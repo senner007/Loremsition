@@ -41,7 +41,8 @@
 - allow user to specify delay before animating elements
 -------------------------------------------------------------------------------------------------------------------------------
 - write guessHeight algorithm
-- fix 
+- refactor guessHeight conditionals
+- refactor/split reLayout methid
 - throttle drag call on mouse/touch move
 
 

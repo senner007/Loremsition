@@ -12,6 +12,7 @@ export function vertical(LoremChopsum) {
   var containers = [
     new LoremChopsum(elem1, {
       isVertical: true,
+      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem2.id,
@@ -22,6 +23,7 @@ export function vertical(LoremChopsum) {
     new LoremChopsum(elem2, {
       isVertical: true,
       // dropLimit: 500,
+      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,
@@ -31,6 +33,7 @@ export function vertical(LoremChopsum) {
     }),
     new LoremChopsum(elem3, {
       isVertical: true,
+      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,
@@ -40,6 +43,7 @@ export function vertical(LoremChopsum) {
     }),
     new LoremChopsum(elem4, {
       isVertical: true,
+      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,

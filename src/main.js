@@ -274,11 +274,12 @@ function setEltProto (param) {
   /*--------------------------------------------------------------------*/
 
 
-  LoremChopsum.prototype.reLayout = function() {
+  LoremChopsum.prototype.reLayout = function(onlyElts) {
 
     var _this = this;
     
     _setUlSize(_setEltsProps(this.elts, this), this) //setting properties function returns the ul size
+    if (onlyElts) return;
     this.props.divWidth = _outerWidth(this.div)
     this.props.divOffset = jsOffset(this.div)
 
@@ -324,24 +325,37 @@ function setEltProto (param) {
     var elt = document.createElement('li');
     elt.innerHTML = item;
     elt = elt.firstChild;
+    
+
+    //console.log(document.body.childNodes[3])
 
     // insert the elt before the current element at liPosition
-    this.ul.insertBefore(elt, thisElts[liPosition]);
+    // document.body.childNodes[3].appendChild(elt);
+      
+    if (!o.guessHeight) {
+      console.log('inserting!')
+      this.ul.insertBefore(elt, thisElts[liPosition]);
+    } 
+
+    
 
 
     // get its height and width
     var completeWidth = setHeight.completeWidth || (o.isVertical ? 0 : _outerWidth(elt)),
-      completeHeight = setHeight.completeHeight || (o.isVertical ? _outerHeight(elt) : 0);
+      completeHeight = setHeight.completeHeight || (o.isVertical ? o.guessHeight ? 200 : _outerHeight(elt): 0); //random demo number
 
 
       //update the ul size
-    var ulSize = o.isVertical ? this.props.ulSize + completeHeight : this.props.ulSize + completeWidth;
-    _setUlSize(ulSize, this)
+      if (!o.guessHeight) {   
+        var ulSize = o.isVertical ? this.props.ulSize + completeHeight : this.props.ulSize + completeWidth;
+        _setUlSize(ulSize, this)
+      }
 
-    // the elt is inserted at the specified liPosition-position but with the n-property set to the last position.
-    // It is then moved up to its position by calling the eltsReorder [liPosition + 1] times
-  //  console.log(eltObj)
-    _addToObject(elt, n, completeHeight, completeWidth, this, eltObj);
+        // the elt is inserted at the specified liPosition-position but with the n-property set to the last position.
+        // It is then moved up to its position by calling the eltsReorder [liPosition + 1] times
+      //  console.log(eltObj)
+        _addToObject(elt, n, completeHeight, completeWidth, this, eltObj);
+  
 
     //reorder the elts below its insert position(last) and update the elt properties(elt.n & elt.pos)
     //if the elt is added when crossing to adjacent instance, the elt will be referred to by the name of thisInst.added

@@ -290,9 +290,8 @@ var eltsReorder = {
 }
 
 function _onStop(elt, thisInst) { // Stop
-
   
-
+  
   /////////////////////////////////
   //  delete thisInst.emptySpace;
   ////////////////////////////////////
@@ -316,12 +315,13 @@ function _onStop(elt, thisInst) { // Stop
 
 
   if (thisInst.crossFlag == true && thisInst.newInst) { // going to new container
-    
+   
     elt.locked = true;
 
     thisInst.lock.call(thisInst.newInst);
 
     thisInst.newInst.ul.insertBefore(thisInst.added, thisInst.newInst.elts[thisInst.added.props.n + 1]);
+    thisInst.reLayout.call(thisInst.newInst, true);
     // The element (thisInst.added) is place on triggerOn,
     // but is not moved if the user subsequently reorders(by dragging) the elements.
     // Therefore it must be inserted/repositioned again
