@@ -25,7 +25,7 @@
 - Call orientationChange event in place of resize on Chrome ios
 - use native event delegation https://stackoverflow.com/questions/14174056/native-addeventlistener-with-selector-like-on-in-jquery
 - when using a single list, allow the option to constrain to a single axis - http://www.javascriptkit.com/javatutors/touchevents.shtml(bottom)
---------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
 - fix onReorder event to only show reorder on the desired instance
 - fix lock method
 - call scale method in removeLiElem
@@ -39,6 +39,10 @@
 - Set initial div.id on elt
 - return elt, elts, thisInst and thisInst.newInst with onDropTo, onDropFrom callbacks
 - allow user to specify delay before animating elements
+-------------------------------------------------------------------------------------------------------------------------------
+- write guessHeight algorithm
+- fix 
+- throttle drag call on mouse/touch move
 
 
 Fixed:
