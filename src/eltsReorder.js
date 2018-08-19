@@ -238,7 +238,7 @@ var eltsReorder = {
         eltPrev.props.n++; // swap n property
         elt.props.n--;
 
-        this.eltsAnimate(eltPrev, -(elt.props.size), thisInst)
+        this.eltsAnimate(eltPrev, -(elt.props.size), thisInst, flag)
       }
     }
   },
@@ -262,11 +262,11 @@ var eltsReorder = {
         eltNext.props.n--; // swap n property
         elt.props.n++;
 
-        this.eltsAnimate(eltNext, elt.props.size, thisInst)
+        this.eltsAnimate(eltNext, elt.props.size, thisInst, flag)
       }
     }
   },
-  eltsAnimate: function(elem, eltDimension, thisInst) {
+  eltsAnimate: function(elem, eltDimension, thisInst, flag) {
 
     thisInst.div.dispatchEvent(setEvents.onReorder);
     var o = thisInst.options;
@@ -283,8 +283,9 @@ var eltsReorder = {
 
 
 
+   
 
-    _transToZero(elem, thisInst);
+    _transToZero(elem, thisInst, undefined, flag);
   },
 }
 
