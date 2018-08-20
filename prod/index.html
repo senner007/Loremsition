@@ -65,7 +65,7 @@
            
             containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
                 containers[1].addLiElem("This element was added after the remove animate event", 0, {elt:true,elts:true})
-                loopContainers(v => v.reLayout())
+                loopContainers(v => v.reCalculate())
             })
 
             window.addEventListener('resize', function () {
