@@ -9,6 +9,7 @@ Lorem chopsum
 
 ### To Run
 - npm run dev - go to localhost:1234/vertical or localhost:1234/horizontal
+- note that browser must be reloaded manually after parcel build
 
 ### Fix
  - If parcel complains that functions are not functions you can:
