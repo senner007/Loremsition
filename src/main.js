@@ -320,6 +320,8 @@ function setEltProto (param) {
       'top': liPosition > 0 ? thisElts[liPosition - 1].props.pos.top + thisElts[liPosition - 1].props.completeHeight : 0
     }
 
+
+
     var item = ('<li style="opacity:' + opacity + ';left:' + eltObj.left + 'px;top:' + eltObj.top + 'px" class=' + (isVertical ? 'listItem' : 'listItem-horizontal') + '>' + liText + '</li>');
     var elt = document.createElement('li');
     elt.innerHTML = item;
@@ -327,25 +329,26 @@ function setEltProto (param) {
 
     return function (completeWidth, completeHeight, setUl, insert) {
 
+      
+      if (insert) {
+        thisInst.ul.insertBefore(elt, thisElts[liPosition]);
+      }
+
       var width = completeWidth(elt);
       var height = completeHeight(elt)
-
-      
 
       if (setUl) {
         _setUlSize(isVertical ? thisInst.props.ulSize + height : thisInst.props.ulSize + width, thisInst)
       }
   
-      if (insert) {
-        thisInst.ul.insertBefore(elt, thisElts[liPosition]);
-      }
 
       _addToObject(elt, n, height, width, thisInst, eltObj);
       //reorder the elts below its insert position(last) and update the elt properties(elt.n & elt.pos)
       //if the elt is added when crossing to adjacent instance, the elt will be referred to by the name of thisInst.added
-  
+ 
       for (var i = liPosition ; i < thisElts.length -1; i++) {
-        eltsReorder._eltsMoveForwardOrDown(elt, thisElts, thisInst, true);
+       
+        eltsReorder._eltsMoveForwardOrDown(elt, thisElts, thisInst);
       };
   
       return elt;
