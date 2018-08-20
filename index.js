@@ -9,11 +9,12 @@ import LoremChopsum from './src/main.js'
     var path = window.location.pathname.split('/');
 
     if (path[1] == 'horizontal') {
+        $('.grid-vertical').remove();
         horizontal(LoremChopsum, $);
     }
     else  {
-        $('.splitList-horizontal').parent().remove();
-        vertical(LoremChopsum, $);
+        $('.splitList-horizontal').remove();
+        vertical(LoremChopsum);
 
     } 
 }());
