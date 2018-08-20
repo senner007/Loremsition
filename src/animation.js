@@ -9,9 +9,9 @@ export {
 };
 
 
-function _transToZero(elt, thisInst, speed, flag) {
+function _transToZero(elt, thisInst, speed) {
   if (speed == undefined) { var speed = '250ms ease' }
-  if (!flag) window.getComputedStyle(elt)[thisInst.transformPrefix] // needed to apply the transition style dynamically
+  window.getComputedStyle(elt)[thisInst.transformPrefix] // needed to apply the transition style dynamically
   elt.style[thisInst.transitionPrefix] = speed;
   elt.style[thisInst.transformPrefix] = thisInst.ifGpu // translateZ doesn't work for ie9
   // Refactor into cssText line !!!!!!!!!!!!!!!

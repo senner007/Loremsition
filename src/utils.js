@@ -69,7 +69,7 @@ function getFirstInstance(thisInst) {
 }
 
 
-function _elemsToCut(thisInst, adjInst) {
+function _elemsToCutAppend(thisInst, adjInst) {
 
   if (adjInst.props.cutOff == false) {
     return function() {};
@@ -80,7 +80,6 @@ function _elemsToCut(thisInst, adjInst) {
       counter = -1;
 
   while (ulSize > adjInst.props.cutOff) {
-  
 
     elemsToCut.push(adjInst.elts[adjInst.elts.length + counter])
     ulSize -= adjInst.elts[adjInst.elts.length + counter].props.size
@@ -91,26 +90,17 @@ function _elemsToCut(thisInst, adjInst) {
   var instToAddTo = next != undefined ? next : getFirstInstance(thisInst); // if drop to last instance: cutoff to first instance
 
   var addedElemsArray = [];
+
   if (elemsToCut.length != 0) {
 
-    for (var i = 0; i < elemsToCut.length; i++) {
-      let setHeight = {
-        completeHeight: elemsToCut[i].completeHeight,
-        completeWidth: elemsToCut[i].completeWidth
-      }
-
-      instToAddTo.options.guessHeight = false;
-      addedElemsArray.push(thisInst.addLiElem.call(instToAddTo, elemsToCut[i].innerHTML, 0, {elt: false, elts: true}, setHeight))
+    for (let i = 0; i < elemsToCut.length; i++) {
+      addedElemsArray.push(thisInst.addLiElem.call(instToAddTo, elemsToCut[i].innerHTML, 0, {elt: false, elts: true}))
       thisInst.removeLiElem.call(adjInst, adjInst.elts[adjInst.elts.length - 1], adjInst.transSupport, false)
-      instToAddTo.options.guessHeight = true;
-  
     }
-
   }
-
   return addedElemsArray;
-
 }
+
 
 function _shuffleArray(a) {
   for (let i = a.length; i; i--) {
@@ -156,7 +146,7 @@ function _shuffle() {
 
 export {
   _shuffle,
-  _elemsToCut,
+  _elemsToCutAppend,
   setEvents,
   defaults,
   transSupport,

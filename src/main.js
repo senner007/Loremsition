@@ -7,7 +7,8 @@
     transSupport,
     transitionPrefix,
     transformPrefix,
-    ifGpu
+    ifGpu,
+    _elemsToCutAppend
   } from "./utils.js"
 
 
@@ -22,8 +23,7 @@
   } from "./animation.js"
 
   import {
-      eltsReorder,
-      _elemsToCut
+      eltsReorder
   } from "./eltsReorder.js"
 
 
@@ -273,13 +273,18 @@ function setEltProto (param) {
   }
   /*--------------------------------------------------------------------*/
 
-
-  LoremChopsum.prototype.reLayout = function(onlyElts) {
+  LoremChopsum.prototype.reCalculate = function() {
 
     var _this = this;
-    
     _setUlSize(_setEltsProps(this.elts, this), this) //setting properties function returns the ul size
-    if (onlyElts) return;
+   
+  };
+
+  LoremChopsum.prototype.reLayout = function() {
+
+    var _this = this;
+    this.reCalculate();
+
     this.props.divWidth = _outerWidth(this.div)
     this.props.divOffset = jsOffset(this.div)
 
@@ -295,83 +300,88 @@ function setEltProto (param) {
   
 
     // console.log(this[this.adjCon[0]])
-    _scaleElems( _elemsToCut(this, this ), this); //_elemsToCut function returns the elts to scale
+    _scaleElems( _elemsToCutAppend(this, this ), this); //_elemsToCut function returns the elts to scale
 
   };
 
 
   /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+  function _curryLi(thisInst, liText, setPos, opacity = 1) {
+
+    var isVertical = thisInst.options.isVertical;
+    var thisElts = thisInst.elts;
+    var liPosition = Math.min(Math.max(parseInt(setPos), 0), thisElts.length); // this is to make sure that the insert position is not greater than the number of elts present.
+    var n = thisElts.length,
+        o = thisInst.options;
+
+    var eltObj = {
+      'left': liPosition > 0 ? thisElts[liPosition - 1].props.pos.left + thisElts[liPosition - 1].props.completeWidth : 0,
+      'top': liPosition > 0 ? thisElts[liPosition - 1].props.pos.top + thisElts[liPosition - 1].props.completeHeight : 0
+    }
+
+    var item = ('<li style="opacity:' + opacity + ';left:' + eltObj.left + 'px;top:' + eltObj.top + 'px" class=' + (isVertical ? 'listItem' : 'listItem-horizontal') + '>' + liText + '</li>');
+    var elt = document.createElement('li');
+    elt.innerHTML = item;
+    elt = elt.firstChild;
+
+    return function (completeWidth, completeHeight, setUl, insert) {
+
+      var width = completeWidth(elt);
+      var height = completeHeight(elt)
+
+      
+
+      if (setUl) {
+        _setUlSize(isVertical ? thisInst.props.ulSize + height : thisInst.props.ulSize + width, thisInst)
+      }
+  
+      if (insert) {
+        thisInst.ul.insertBefore(elt, thisElts[liPosition]);
+      }
+
+      _addToObject(elt, n, height, width, thisInst, eltObj);
+      //reorder the elts below its insert position(last) and update the elt properties(elt.n & elt.pos)
+      //if the elt is added when crossing to adjacent instance, the elt will be referred to by the name of thisInst.added
+  
+      for (var i = liPosition ; i < thisElts.length -1; i++) {
+        eltsReorder._eltsMoveForwardOrDown(elt, thisElts, thisInst, true);
+      };
+  
+      return elt;
+    }
+  }
+
+
+  LoremChopsum.prototype._addLiToObject = function (liText, setPos = this.elts.length) {
+
+    var isVertical = this.options.isVertical;
+
+    var createLi = _curryLi(this, liText, setPos, 0);
+
+    return createLi(v => isVertical ? 0 : 200, v => isVertical ? 200 : 0)    //random guessed number
+
+  }
+
   // es6 defaults:
   // liPosition : defaults to last position
   // addTrans: deafults to animate li and surrounding elems
   // setHeight: defaults to automatically retrieved height/width
 
-  LoremChopsum.prototype.addLiElem = function(liText, setPos = this.elts.length, addTrans = {elt:true,elts:true}, setHeight = {}, opacity = 1) {
 
-    //display param has an ES6 default value
+  LoremChopsum.prototype.addLiElem = function(liText, setPos = this.elts.length, addTrans = {elt:true,elts:true}) {
 
-    var thisElts = this.elts;
-    var liPosition = Math.min(Math.max(parseInt(setPos), 0), thisElts.length); // this is to make sure that the insert position is not greater than the number of elts present.
-    var n = thisElts.length,
-      o = this.options,
-      tempArr = [];
-      var eltObj = {
-        'left': liPosition > 0 ? thisElts[liPosition - 1].props.pos.left + thisElts[liPosition - 1].props.completeWidth : 0,
-        'top': liPosition > 0 ? thisElts[liPosition - 1].props.pos.top + thisElts[liPosition - 1].props.completeHeight : 0
-      }
+    var isVertical = this.options.isVertical;
 
-    var item = ('<li style="opacity:' + opacity  +';left:' + eltObj.left + 'px;top:' + eltObj.top + 'px" class=' + (o.isVertical ? 'listItem' : 'listItem-horizontal') + '>' + liText + '</li>');
-    var elt = document.createElement('li');
-    elt.innerHTML = item;
-    elt = elt.firstChild;
+    var createLi = _curryLi(this, liText, setPos);
+
+    var elt = createLi(v => isVertical ? 0 : _outerWidth(v), v => isVertical ? _outerHeight(v): 0, true, true)  
     
-
-    //console.log(document.body.childNodes[3])
-
-    // insert the elt before the current element at liPosition
-    // document.body.childNodes[3].appendChild(elt);
-      
-    if (!o.guessHeight) {
-      console.log('inserting!')
-      this.ul.insertBefore(elt, thisElts[liPosition]);
-    } 
-
-    
-
-
-    // get its height and width
-    var completeWidth = setHeight.completeWidth || (o.isVertical ? 0 : _outerWidth(elt)),
-      completeHeight = setHeight.completeHeight || (o.isVertical ? o.guessHeight ? 200 : _outerHeight(elt): 0); //random demo number
-
-
-      //update the ul size
-      if (!o.guessHeight) {   
-        var ulSize = o.isVertical ? this.props.ulSize + completeHeight : this.props.ulSize + completeWidth;
-        _setUlSize(ulSize, this)
-      }
-
-        // the elt is inserted at the specified liPosition-position but with the n-property set to the last position.
-        // It is then moved up to its position by calling the eltsReorder [liPosition + 1] times
-      //  console.log(eltObj)
-        _addToObject(elt, n, completeHeight, completeWidth, this, eltObj);
-  
-
-    //reorder the elts below its insert position(last) and update the elt properties(elt.n & elt.pos)
-    //if the elt is added when crossing to adjacent instance, the elt will be referred to by the name of thisInst.added
-
-    for (var i = liPosition ; i < thisElts.length -1; i++) {
-      eltsReorder._eltsMoveForwardOrDown(elt, thisElts, this, true);
-    };
-
-
     if (addTrans.elt) {
       _scaleElems([elt], this)
 
     }; // animation only needed when triggering add
-
-    //this.unlock();
-
+    
     return elt;
   }
 

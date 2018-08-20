@@ -1,6 +1,6 @@
 
 import {
-  _elemsToCut,
+  _elemsToCutAppend,
   setEvents
 } from "./utils.js"
 import {
@@ -173,7 +173,6 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
     };
     // initially set insertPos to the length of elts (dropped after last item);
     // reorder the elements in the originating container
-    var opacity = 0
 
     ///////////////////////////////////////////////////////////
     // optionally set elt to animate to the new width
@@ -181,19 +180,7 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
     // elt.style.width = thisInst.newInst.props.divWidth + 'px'
       ///////////////////////////////////////////////////////////
 
-    // get the difference between the thisInst width and newInst width
-    var diff = Math.abs ( thisInst.props.divWidth - thisInst.newInst.props.divWidth)
-
-    // if new width is not same - set to undefined if in vertical
-    var setHeight = {
-      completeHeight: diff < 2  ? elt.props.completeHeight: o.isVertical ? undefined : elt.props.completeHeight,
-      completeWidth: elt.props.completeWidth
-      }
-
-    thisInst.added = thisInst.addLiElem.call(thisInst.newInst, elt.innerHTML, insertPos, {
-      elt: false,
-      elts: true
-    }, setHeight, opacity);
+    thisInst.added = thisInst._addLiToObject.call(thisInst.newInst, elt.innerHTML, insertPos);
 
   },
   _deleteElt: function(thisInst) { // going back to the originating container
@@ -238,7 +225,7 @@ var eltsReorder = {
         eltPrev.props.n++; // swap n property
         elt.props.n--;
 
-        this.eltsAnimate(eltPrev, -(elt.props.size), thisInst, flag)
+        this.eltsAnimate(eltPrev, -(elt.props.size), thisInst)
       }
     }
   },
@@ -262,11 +249,11 @@ var eltsReorder = {
         eltNext.props.n--; // swap n property
         elt.props.n++;
 
-        this.eltsAnimate(eltNext, elt.props.size, thisInst, flag)
+        this.eltsAnimate(eltNext, elt.props.size, thisInst)
       }
     }
   },
-  eltsAnimate: function(elem, eltDimension, thisInst, flag) {
+  eltsAnimate: function(elem, eltDimension, thisInst) {
 
     thisInst.div.dispatchEvent(setEvents.onReorder);
     var o = thisInst.options;
@@ -285,7 +272,7 @@ var eltsReorder = {
 
    
 
-    _transToZero(elem, thisInst, undefined, flag);
+    _transToZero(elem, thisInst);
   },
 }
 
@@ -321,7 +308,7 @@ function _onStop(elt, thisInst) { // Stop
     thisInst.lock.call(thisInst.newInst);
 
     thisInst.newInst.ul.insertBefore(thisInst.added, thisInst.newInst.elts[thisInst.added.props.n + 1]);
-    thisInst.reLayout.call(thisInst.newInst, true);
+    thisInst.reCalculate.call(thisInst.newInst);
     // The element (thisInst.added) is place on triggerOn,
     // but is not moved if the user subsequently reorders(by dragging) the elements.
     // Therefore it must be inserted/repositioned again
@@ -329,8 +316,16 @@ function _onStop(elt, thisInst) { // Stop
     elt.addEventListener('transitionend', _callback);
 
     function _callback() {
-      appendRemove.call(thisInst)
       this.removeEventListener('transitionend', _callback);
+      thisInst.added.style.opacity = 1
+      thisInst.options.isVertical ? thisInst.added.style.top = thisInst.added.props.pos.top + 'px' : thisInst.added.style.left = thisInst.added.props.pos.left + 'px';
+      appendRemove.call(thisInst)
+      thisInst.div.dispatchEvent(setEvents.onDropFrom);
+      thisInst.newInst.div.dispatchEvent(setEvents.onDropTo);
+      
+      thisInst.unlock.call(thisInst.newInst);
+      delete thisInst.newInst
+      
     }
 
 
@@ -357,41 +352,15 @@ function _onStop(elt, thisInst) { // Stop
   }
 
   _animateBack(elt, thisInst);
-  _transToZero(elt, thisInst, speed);
+  _transToZero(elt, thisInst, speed, false);
 
   thisInst.crossFlag = false;
 
   function appendRemove() {
-
-    thisInst.added.style.opacity = 1
-    thisInst.options.isVertical ? thisInst.added.style.top = thisInst.added.props.pos.top + 'px' : thisInst.added.style.left = thisInst.added.props.pos.left + 'px';
     delete thisInst.added // the object that is a reference to the added object is deleted
-    thisInst.removeLiElem(elt, false); // the dragged elt from the previous/starting instance is deleted once animated to its position
-    thisInst.unlock.call(thisInst.newInst);
+    thisInst.removeLiElem(elt, false); // the dragged elt from the previous/starting instance is deleted once animated to its position  
 
-    var elmsCut = _elemsToCut(thisInst, thisInst.newInst);
-
-    thisInst.div.dispatchEvent(setEvents.onDropFrom);
-    thisInst.newInst.div.dispatchEvent(setEvents.onDropTo);
-
-    _scaleElems(elmsCut, thisInst);
-
-
-
-
-    // console.clear()
-    // var elts =  thisInst.newInst.elts
-    // for (var i =0; i < elts.length; i++) { // originating
-    //   console.log('- : ' + elts[i].props.n)
-    //   console.log('pos left: ' +  elts[i].pos.left)
-    //   console.log('style left: ' +   elts[i].style.left)
-    //   console.log('pos top: ' +  elts[i].pos.top)
-    //   console.log('style top: ' +  elts[i].style.top)
-    //   console.log('size: ' +  elts[i].props.size)
-    //   console.log('ulSize: ' +  thisInst.newInst.props.ulSize)
-    // };
-
-    delete thisInst.newInst
+    _scaleElems(_elemsToCutAppend(thisInst, thisInst.newInst), thisInst);
   };
 
 };
@@ -399,6 +368,5 @@ function _onStop(elt, thisInst) { // Stop
 export {
   _onDrag,
   eltsReorder,
-  _onStop,
-  _elemsToCut
+  _onStop
 };

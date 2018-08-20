@@ -12,7 +12,6 @@ export function vertical(LoremChopsum) {
   var containers = [
     new LoremChopsum(elem1, {
       isVertical: true,
-      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem2.id,
@@ -23,7 +22,6 @@ export function vertical(LoremChopsum) {
     new LoremChopsum(elem2, {
       isVertical: true,
       // dropLimit: 500,
-      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,
@@ -33,7 +31,6 @@ export function vertical(LoremChopsum) {
     }),
     new LoremChopsum(elem3, {
       isVertical: true,
-      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,
@@ -43,7 +40,6 @@ export function vertical(LoremChopsum) {
     }),
     new LoremChopsum(elem4, {
       isVertical: true,
-      guessHeight :  true,
       cutOff: winHeight,
       adjIds: [
         elem1.id,
@@ -58,13 +54,7 @@ export function vertical(LoremChopsum) {
   // SETUP CALLBACKS
   /////////////////////////////////////////
 
- // containers[1].div.addEventListener('onLayout', function () {
-    // example of using the removeLiElem method on the object's prototype. Callback is fired when animation is done
-    // var toDelete = elem.find('li').eq(2)[0]
-    //cont1.removeLiElem(toDelete, true, function (){ })
-    // containers[1].addLiElem("<span class='special'></span>This element is added after the 'layoutCompleteAll' event.")
 
- // })
   // containers[0].div.addEventListener('onReorder', function () {
 
 
@@ -116,10 +106,15 @@ export function vertical(LoremChopsum) {
     //  containers[0].reLayout()
   //})
 
+  containers[1].div.addEventListener('onLayoutAll', function () {
+    console.log('hello layoutall')
+    containers[1].addLiElem("<span class='special'></span>This element is added after the 'onLayoutAll' event.", 0)
+ })
+
   loopContainers(function (c) {
     c.div.addEventListener('onDropTo', function (ev) {
       liInc()
-      loopContainers(v => v.reLayout())
+      loopContainers(v => v.reCalculate())
     })
   })
 
@@ -150,9 +145,8 @@ export function vertical(LoremChopsum) {
   }
 
   loopContainers(v => v.init())
-
   liInc()
-  loopContainers(v => v.reLayout())
+  loopContainers(v => v.reCalculate())
 
   resizeThrottle(function () {
     console.log('resizing!')
