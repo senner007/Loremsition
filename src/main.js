@@ -141,6 +141,7 @@ function setEltProto (param) {
   }
 
   LoremChopsum.prototype.crossDistance = function(thisInst, adjInst) {
+    adjInst.props.divOffset = jsOffset(adjInst.div) // if reLayout is called on all instances, this will be called multiple times on the same containers unnecessary
     return this.options.isVertical ? (adjInst.props.divOffset.left - this.props.divOffset.left) : (adjInst.props.divOffset.top - this.props.divOffset.top);
   }
 
