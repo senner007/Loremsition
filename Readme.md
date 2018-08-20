@@ -1,7 +1,8 @@
 # Lorem chopsum
 Lorem chopsum
 
-[Vertical demo](https://www.nielshtg.dk/lorem-chopsum/vertical)
+[Vertical demo](https://www.nielshtg.dk/lorem-chopsum/vertical) 
+
 [Production Vertical demo](https://www.nielshtg.dk/lorem-chopsum/vertical)
 <!-- [Horizontal Demo](https://www.nielshtg.dk/loremchopsum/horizontal)  -->
 
