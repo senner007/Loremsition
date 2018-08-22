@@ -107,7 +107,7 @@ export function horizontal (LoremChopsum, $) {
   var containers = [cont1, cont2, cont3, cont4];
   function liInc (containers) {
     var counter = 1;
-    for (let el of containers) {
+    containers.forEach(el => {
 
       for (let i = 0; i<el.elts.length; i++) {
         var myText = counter + 'th'
@@ -118,8 +118,9 @@ export function horizontal (LoremChopsum, $) {
         el.elts[i].childNodes[0].textContent = myText
         counter++;
       }
+ 
+    });
 
-    };
   }
 
   function layoutContainers() {

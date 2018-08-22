@@ -2,7 +2,7 @@
   
   import {
     _shuffle,
-    setEvents,
+    // setEvents,
     defaults,
     transSupport,
     transitionPrefix,
@@ -107,7 +107,8 @@ function setEltProto (param) {
     // this.container = window.temporaryInstanceArray.length;
     this.adjCon = [];
     // this.options = $.extend({}, defaults, options);
-    this.options = Object.assign({}, defaults, options);
+    // this.options = Object.assign({}, defaults, options);
+    this.options = mergeObject({}, defaults, options); // Object.assign alternative
     this.props.cutOff = this.options.cutOff;
     this.props.dropLimit = this.options.dropLimit;
     this.ul.style[transformPrefix] = 'translate3d(0px,0px,0px)';
@@ -119,6 +120,53 @@ function setEltProto (param) {
     this.crossFlag = false;
     temporaryInstanceArray.push(this);
   };
+
+  function mergeObject(target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
+}
+
+(function () { // custom event polyfill
+
+  if ( typeof window.CustomEvent === "function" ) return false;
+
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+   }
+
+  CustomEvent.prototype = window.Event.prototype;
+
+  window.CustomEvent = CustomEvent;
+})();
+
+// from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('remove')) {
+      return;
+    }
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode !== null)
+          this.parentNode.removeChild(this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+
 
 
 
@@ -156,10 +204,9 @@ function setEltProto (param) {
 
            if (temporaryInstanceArray[i].id == adjInstances[n]) {
 
-                var copy = Object.assign({}, temporaryInstanceArray[i]);
-                for (let val of copy.adjCon) {
-                 delete copy[val]
-                }
+                var copy = mergeObject({}, temporaryInstanceArray[i]);
+                copy.adjCon.forEach(v =>  delete copy[v])
+               
                 delete copy.adjCon;
                 this['adjInst' + (n +1)] = copy;
                 this.adjCon.push('adjInst' + (n +1))
@@ -239,7 +286,7 @@ function setEltProto (param) {
 
     this.isInit = true;
   
-    this.div.dispatchEvent(setEvents.onLayout) // onLayout event
+    this.div.dispatchEvent(new CustomEvent('onLayout')) // onLayout event
 
     function countInit() {
       return temporaryInstanceArray.reduce((acc,b) => { // loop over the array and get all instances that have been initialized
@@ -250,7 +297,7 @@ function setEltProto (param) {
     if (countInit() == temporaryInstanceArray.length) {           // if all instances have been initialized
         temporaryInstanceArray.forEach(v => {
           v.setInstances();
-          v.div.dispatchEvent(setEvents.onLayoutAll);
+          v.div.dispatchEvent(new CustomEvent('onLayoutAll'));
         })
     }
   };

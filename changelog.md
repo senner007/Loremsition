@@ -22,3 +22,4 @@
 - Allows dragging/dropping between n numnber of instances
 - Allow individual width of instance container in vertical mode.
 - Use css grid to position containers or set to absolute or percentage values;
+- Ie 10+ support

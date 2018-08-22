@@ -1,11 +1,11 @@
-var setEvents = {
-  onLayoutAll: new Event('onLayoutAll'),
-  onLayout : new Event('onLayout'),
-  onReorder: new Event('onReorder'),
-  onDropTo: new Event('onDropTo'),
-  onDropFrom: new Event('onDropFrom')
+// var setEvents = {
+//   onLayoutAll: new Event('onLayoutAll'),
+//   onLayout : new Event('onLayout'),
+//   onReorder: new Event('onReorder'),
+//   onDropTo: new Event('onDropTo'),
+//   onDropFrom: new Event('onDropFrom'),
 //  afterDrop: new Event('afterDrop')
-};
+// };
 
 var transSupport = (function() {
   var b = document.body || document.documentElement,
@@ -147,7 +147,7 @@ function _shuffle() {
 export {
   _shuffle,
   _elemsToCutAppend,
-  setEvents,
+  // setEvents,
   defaults,
   transSupport,
   transitionPrefix,

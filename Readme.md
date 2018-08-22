@@ -22,7 +22,7 @@ Lorem chopsum
 - npm run build
 
  ### Browser support:
-  <!-- - IE 10+ -->
+  - IE 10+
   - Chrome
   - Firefox
   - Edge

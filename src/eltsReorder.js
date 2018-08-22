@@ -1,7 +1,7 @@
 
 import {
   _elemsToCutAppend,
-  setEvents
+  // setEvents
 } from "./utils.js"
 import {
   _animateBack,
@@ -255,7 +255,7 @@ var eltsReorder = {
   },
   eltsAnimate: function(elem, eltDimension, thisInst) {
 
-    thisInst.div.dispatchEvent(setEvents.onReorder);
+    thisInst.div.dispatchEvent(new CustomEvent('onReorder'));
     var o = thisInst.options;
     var plane = o.isVertical ? 'top' : 'left';
 
@@ -320,8 +320,8 @@ function _onStop(elt, thisInst) { // Stop
       thisInst.added.style.opacity = 1
       thisInst.options.isVertical ? thisInst.added.style.top = thisInst.added.props.pos.top + 'px' : thisInst.added.style.left = thisInst.added.props.pos.left + 'px';
       appendRemove.call(thisInst)
-      thisInst.div.dispatchEvent(setEvents.onDropFrom);
-      thisInst.newInst.div.dispatchEvent(setEvents.onDropTo);
+      thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
+      thisInst.newInst.div.dispatchEvent(new CustomEvent('onDropTo'));
       
       thisInst.unlock.call(thisInst.newInst);
       delete thisInst.newInst
@@ -342,8 +342,8 @@ function _onStop(elt, thisInst) { // Stop
 
       function _callback() {
         console.log('afterDrop - no cut');
-        thisInst.div.dispatchEvent(setEvents.onDropTo);
-        thisInst.div.dispatchEvent(setEvents.onDropFrom);
+        thisInst.div.dispatchEvent(new CustomEvent('onDropTo'));
+        thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
 
         this.removeEventListener('transitionend', _callback);
       }
