@@ -8,22 +8,29 @@
 
   #chopsum-vertical-1  {
   
-    width: 300px;
+    width: 50%;
+
+    left: 0;
     position: absolute;
   }
   #chopsum-vertical-2 {
   
-    width: 300px;
-    left: 300px;
+    width:50%;
+    left: 50%;
     position: absolute;
   }
 
   .container {
     margin: 0 auto;
     margin-top: 20px;
-    width: 100%;
+    width: 70%;
   
   }
+
+   .grid-vertical {
+    position: absolute;
+    width: inherit;
+} 
   
 }
 
