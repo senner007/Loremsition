@@ -59,19 +59,19 @@
                 })
             ]
 
-            loopContainers(v => {
+            loopContainers(function(v) {
                 v.init();
             })
            
             containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
                 containers[1].addLiElem("This element was added after the remove animate event", 0, {elt:true,elts:true})
-                loopContainers(v => v.reCalculate())
+                loopContainers(function(v) {v.reCalculate()})
             })
 
             window.addEventListener('resize', function () {
-                loopContainers(v => v.cutOff = window.innerHeight - 20)
-                loopContainers(v => v.cutOffEnd())
-                loopContainers(v => v.reLayout())
+                loopContainers(function(v) {v.cutOff = window.innerHeight - 20})
+                loopContainers(function(v) {v.cutOffEnd()})
+                loopContainers(function(v) {v.reLayout()})
             });
           
 

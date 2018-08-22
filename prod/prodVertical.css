@@ -3,14 +3,42 @@
   grid-template-columns: 3fr 3fr;
 }
 
-#chopsum-vertical-1, #chopsum-vertical-2 {
+/* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { 
+
+  #chopsum-vertical-1  {
+  
+    width: 300px;
+    position: absolute;
+  }
+  #chopsum-vertical-2 {
+  
+    width: 300px;
+    left: 300px;
+    position: absolute;
+  }
+
+  .container {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 100%;
+  
+  }
+  
+}
+
+.chopsum-vertical {
   display: block;
+  transform: translateZ(0); /* don't know if it helps */
+
 }
 
 .chopsum-list-vertical {
   display: block;
   z-index: 1;
   margin: 5px;
+  transform: translateZ(0); /* don't know if it helps */
+ 
 }
 
 .listItem {
