@@ -16,4 +16,25 @@ function resizeThrottle(fn) {
         }
 }
 
-export {resizeThrottle}
+function liInc(loopContainers) {
+    var counter = 1;
+    loopContainers(function (el) {
+      for (let i = 0; i < el.elts.length; i++) {
+        var myText = counter + 'th'
+        if (counter == 1) {
+          myText = counter + 'st'
+        }
+        if (counter == 2) {
+          myText = counter + 'nd'
+        }
+        if (counter == 3) {
+          myText = counter + 'rd'
+        }
+        el.elts[i].querySelector('.special').textContent = myText
+        counter++;
+      }
+    })
+  }
+
+
+export {resizeThrottle, liInc}

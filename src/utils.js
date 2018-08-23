@@ -94,6 +94,7 @@ function _elemsToCutAppend(thisInst, adjInst) {
   if (elemsToCut.length != 0) {
 
     for (let i = 0; i < elemsToCut.length; i++) {
+     
       addedElemsArray.push(thisInst.addLiElem.call(instToAddTo, elemsToCut[i].innerHTML, 0, {elt: false, elts: true}))
       thisInst.removeLiElem.call(adjInst, adjInst.elts[adjInst.elts.length - 1], adjInst.transSupport, false)
     }

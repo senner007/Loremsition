@@ -1,18 +1,18 @@
 .grid-horizontal {
   display: grid;
-  grid-gap: 10px;
 }
 
-#jMyPuzzleId5, #jMyPuzzleId6, #jMyPuzzleId7, #jMyPuzzleId8 {
-  grid-column: 1;
-  height: 42px;
+.loremsition-horizontal {
+  height: 60px;
+  position: relative;
 }
 
-.splitList-horizontal {
+.loremsition-list-horizontal {
   width: inherit;
-  position: absolute;
+  position: relative;
   display: block;
   list-style-type: none;
+  z-index: 1;
 }
 
 .listItem-horizontal {
@@ -26,24 +26,15 @@
   padding-right: 8px;
   border: 1px solid black;
   white-space: nowrap;
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .listItem-horizontal span {
   font-size: 20px;
   color: #00A2CD;
-  /* font-style: italic; */
   opacity: 1;
   vertical-align: middle;
   position: relative;
   top: -3px;
   margin-right: 2px;
-
-
-}
-
-.listItem-horizontal .liButton {
-  width: 150px;
-  margin-left: 4px;
-  margin-right: 4px;
 }
