@@ -36,9 +36,7 @@ import {
       startX,
       startY,
       hasMoved;
-  
-  //  ul.style.zIndex = '1'
-  
+
     ul.addEventListener(eStart, pointerstart)
   
       function pointerstart (e) {
@@ -61,6 +59,10 @@ import {
   
       elt.nStart = elt.n
       elt.style[transitionPrefix] = '0s';
+
+      elt.style.zIndex = 5; // TODO : find alternative
+      thisInst.div.style.zIndex = 999;
+
     //  elt.style.zIndex = 5;
       //move.addClass('dragging');
     //  elt.className = classDefine + ' dragging';
@@ -100,10 +102,7 @@ import {
       return
       }
   
-  
-    //  alert('hello')
-  
-      //  console.log('after interrupt')
+
       //if ($(move).offset().top <  div.offset().top ) {return;}   //containment
       e.preventDefault();
       hasMoved = true; // hasMoved is a flag to clicking items without moving them
@@ -114,13 +113,13 @@ import {
   
   
         elt.style[transformPrefix] = 'translate3d(' + newDx + 'px, ' + newDy + 'px, 0px) translateZ(0)';
+
   
       //var eltsn = Array.prototype.indexOf.call(ul.children, elt)
   
       elt.props.currentPos.top = targetOffsetY + newDy;
       elt.props.currentPos.left = targetOffsetX + newDx;
       //	console.log('moving')
-  
       _onDrag(elt, thisInst);
   
     };
@@ -130,6 +129,9 @@ import {
         ul.addEventListener(eStart, pointerstart);
   
       if (hasMoved == true) {
+
+        
+       
         hasMoved = false;
         clearClass();
       //  if (transSupport) {

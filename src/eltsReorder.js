@@ -322,7 +322,8 @@ function _onStop(elt, thisInst) { // Stop
       appendRemove.call(thisInst)
       thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
       thisInst.newInst.div.dispatchEvent(new CustomEvent('onDropTo'));
-      
+      elt.style.zIndex = 0; // TODO : FIX duplication
+      thisInst.div.style.zIndex = 0;
       thisInst.unlock.call(thisInst.newInst);
       delete thisInst.newInst
       
@@ -344,7 +345,8 @@ function _onStop(elt, thisInst) { // Stop
         console.log('afterDrop - no cut');
         thisInst.div.dispatchEvent(new CustomEvent('onDropTo'));
         thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
-
+        elt.style.zIndex = 0;
+        thisInst.div.style.zIndex = 0;
         this.removeEventListener('transitionend', _callback);
       }
 
