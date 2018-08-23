@@ -1,18 +1,32 @@
 {
   "name": "Loremsition",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "example": "examples"
+  "version": "0.9.0",
+  "description": "High performance lightweight javascript library for content layout and animated rearrangement",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/senner007/Loremsition.git"
   },
+  "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
     "build": "webpack"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "DOM",
+    "browser",
+    "layout",
+    "sorting",
+    "transition",
+    "arranging",
+    "library",
+    "performance",
+    "lightweight",
+    "mobile",
+    "touch",
+    "draggable"
+  ],
+  "author": "senner007",
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.0.0-rc.1",
     "@babel/preset-env": "^7.0.0-rc.1",
