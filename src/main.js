@@ -27,7 +27,7 @@
   } from "./eltsReorder.js"
 
 
-  export default LoremChopsum;
+  export default Loremsition;
 
   function Elt (n, thisHeight, thisWidth, thisInst, eltObj) {
     var isVertical = thisInst.options.isVertical == true;
@@ -90,7 +90,7 @@ function setEltProto (param) {
   }
   var temporaryInstanceArray = [];
 
-  function LoremChopsum(element, options) { // Constructor function
+  function Loremsition(element, options) { // Constructor function
     // window.temporaryInstanceArray =  window.temporaryInstanceArray || [];
      // create the temporaryInstanceArray in the global scope
     this.props = {}; // The values that are to remain a reference as a shallow copy and update accordingly in adjInst must reside in a nested oobject.
@@ -170,31 +170,31 @@ function setEltProto (param) {
 
 
 
-  LoremChopsum.prototype.setCutOff = function (cutOff){
+  Loremsition.prototype.setCutOff = function (cutOff){
 
       this.props.cutOff = cutOff
   };
 
-  LoremChopsum.prototype.getInstances = function() {
+  Loremsition.prototype.getInstances = function() {
     // get object containing all instances, but without the proto
   }
 
-  LoremChopsum.prototype.lock = function() {
+  Loremsition.prototype.lock = function() {
     // Nothing can be dragged to or from this instance
     this.props.locked = true;
   }
 
-  LoremChopsum.prototype.unlock = function() {
+  Loremsition.prototype.unlock = function() {
     this.props.locked = false;
   }
 
-  LoremChopsum.prototype.crossDistance = function(thisInst, adjInst) {
+  Loremsition.prototype.crossDistance = function(thisInst, adjInst) {
     adjInst.props.divOffset = jsOffset(adjInst.div) // if reLayout is called on all instances, this will be called multiple times on the same containers unnecessary
     return this.options.isVertical ? (adjInst.props.divOffset.left - this.props.divOffset.left) : (adjInst.props.divOffset.top - this.props.divOffset.top);
   }
 
 
-  LoremChopsum.prototype.setInstances = function() {
+  Loremsition.prototype.setInstances = function() {
 
     var adjInstances = this.options.adjIds;                     //Refactor - too many loops
 
@@ -222,11 +222,11 @@ function setEltProto (param) {
 
 
 
-  LoremChopsum.prototype.getUlSize = function() {
+  Loremsition.prototype.getUlSize = function() {
     return this.props.ulSize;
   }
 
-  LoremChopsum.prototype.shuffle = _shuffle;
+  Loremsition.prototype.shuffle = _shuffle;
 
   /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -275,7 +275,7 @@ function setEltProto (param) {
   }
     /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-  LoremChopsum.prototype.init = function() {
+  Loremsition.prototype.init = function() {
 
     var lis = this.div.getElementsByTagName('li');
     this.elts = new Array(lis.length);
@@ -321,14 +321,14 @@ function setEltProto (param) {
   }
   /*--------------------------------------------------------------------*/
 
-  LoremChopsum.prototype.reCalculate = function() {
+  Loremsition.prototype.reCalculate = function() {
 
     var _this = this;
     _setUlSize(_setEltsProps(this.elts, this), this) //setting properties function returns the ul size
    
   };
 
-  LoremChopsum.prototype.reLayout = function() {
+  Loremsition.prototype.reLayout = function() {
 
     var _this = this;
     this.reCalculate();
@@ -344,7 +344,7 @@ function setEltProto (param) {
   /*------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-  LoremChopsum.prototype.cutOffEnd = function() { // function to remove the items above cutoff limit and then prepend the adjacent container
+  Loremsition.prototype.cutOffEnd = function() { // function to remove the items above cutoff limit and then prepend the adjacent container
   
 
     // console.log(this[this.adjCon[0]])
@@ -404,7 +404,7 @@ function setEltProto (param) {
   }
 
 
-  LoremChopsum.prototype._addLiToObject = function (liText, setPos = this.elts.length) {
+  Loremsition.prototype._addLiToObject = function (liText, setPos = this.elts.length) {
 
     var isVertical = this.options.isVertical;
 
@@ -420,7 +420,7 @@ function setEltProto (param) {
   // setHeight: defaults to automatically retrieved height/width
 
 
-  LoremChopsum.prototype.addLiElem = function(liText, setPos = this.elts.length, addTrans = {elt:true,elts:true}) {
+  Loremsition.prototype.addLiElem = function(liText, setPos = this.elts.length, addTrans = {elt:true,elts:true}) {
 
     var isVertical = this.options.isVertical;
 
@@ -439,7 +439,7 @@ function setEltProto (param) {
   /*------------------------------------------------------------------------------------------------------------------------*/
 
 
-  LoremChopsum.prototype.removeLiElem = function(elt, transition, callBack) { // Remove new li to previous collection
+  Loremsition.prototype.removeLiElem = function(elt, transition, callBack) { // Remove new li to previous collection
 
     if (elt == undefined) {return;} // if the requested elt to delete doesn't exist
     var n = elt.props.n,

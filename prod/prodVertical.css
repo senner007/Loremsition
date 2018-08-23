@@ -6,14 +6,14 @@
 /* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { 
 
-  #chopsum-vertical-1  {
+  #loremsition-vertical-1  {
   
     width: 50%;
 
     left: 0;
     position: absolute;
   }
-  #chopsum-vertical-2 {
+  #loremsition-vertical-2 {
   
     width:50%;
     left: 50%;
@@ -34,13 +34,13 @@
   
 }
 
-.chopsum-vertical {
+.loremsition-vertical {
   display: block;
   transform: translateZ(0); /* don't know if it helps */
 
 }
 
-.chopsum-list-vertical {
+.loremsition-list-vertical {
   display: block;
   z-index: 1;
   margin: 5px;

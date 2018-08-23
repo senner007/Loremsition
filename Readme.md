@@ -1,10 +1,10 @@
-# Lorem chopsum
-Lorem chopsum
+# Loremsition
+Loremsition
 
-[Vertical demo](https://www.nielshtg.dk/lorem-chopsum/vertical) 
+[Vertical demo](https://www.nielshtg.dk/loremsition/vertical) 
 
-[Production Vertical demo](https://www.nielshtg.dk/lorem-chopsum/vertical-prod/)
-<!-- [Horizontal Demo](https://www.nielshtg.dk/loremchopsum/horizontal)  -->
+[Production Vertical demo](https://www.nielshtg.dk/loremsition/vertical-prod/)
+<!-- [Horizontal Demo](https://www.nielshtg.dk/loremsition/horizontal)  -->
 
 ### Install dependencies:
 - npm install

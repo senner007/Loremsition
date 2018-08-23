@@ -10,7 +10,7 @@
 - Automatically remove and prepend items to containers to prevent overflow (cutOff option)
 - Multiple instances on the same page
 - reLayout method is added to allow repositioning and updates to position data in object instances. Can be fired after window resize event(which is also fired on orientation change on mobile devices)
-- No longer uses jquery plugin structure. Instantiate object using new keyword. Ex var myList = new LoremChopsum(divElem, options)
+- No longer uses jquery plugin structure. Instantiate object using new keyword. Ex var myList = new Loremsition(divElem, options)
 - layoutCompleteAll after all instances have been initialized
 - Animation speed logic to determine when to speed up animations.
 - Dragging with touch, mouse or pointer

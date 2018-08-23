@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import {vertical} from "./examples/vertical.js"
 import {horizontal } from "./examples/horizontal.js"
-import LoremChopsum from './src/main.js'
+import Loremsition from './src/main.js'
 
 //$('.container').hide(); // cannot be set from css ???
 
@@ -10,11 +10,11 @@ import LoremChopsum from './src/main.js'
 
     if (path[1] == 'horizontal') {
         $('.grid-vertical').remove();
-        horizontal(LoremChopsum, $);
+        horizontal(Loremsition, $);
     }
     else  {
         $('.splitList-horizontal').remove();
-        vertical(LoremChopsum);
+        vertical(Loremsition);
 
     } 
 }());
