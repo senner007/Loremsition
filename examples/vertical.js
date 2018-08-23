@@ -1,16 +1,16 @@
 import {resizeThrottle} from './utils/utils_helpers'
 
-export function vertical(LoremChopsum) {
+export function vertical(Loremsition) {
 
-  var elem1 = document.getElementById('chopsum-vertical-1');
-  var elem2 = document.getElementById('chopsum-vertical-2');
-  var elem3 = document.getElementById('chopsum-vertical-3');
-  var elem4 = document.getElementById('chopsum-vertical-4');
+  var elem1 = document.getElementById('loremsition-vertical-1');
+  var elem2 = document.getElementById('loremsition-vertical-2');
+  var elem3 = document.getElementById('loremsition-vertical-3');
+  var elem4 = document.getElementById('loremsition-vertical-4');
 
   var winHeight = window.innerHeight - 20; // recalculate windows height for cutoff on resize.
 
   var containers = [
-    new LoremChopsum(elem1, {
+    new Loremsition(elem1, {
       isVertical: true,
       cutOff: winHeight,
       adjIds: [
@@ -19,7 +19,7 @@ export function vertical(LoremChopsum) {
         elem4.id
       ]
     }),
-    new LoremChopsum(elem2, {
+    new Loremsition(elem2, {
       isVertical: true,
       // dropLimit: 500,
       cutOff: winHeight,
@@ -29,7 +29,7 @@ export function vertical(LoremChopsum) {
         elem4.id
       ]
     }),
-    new LoremChopsum(elem3, {
+    new Loremsition(elem3, {
       isVertical: true,
       cutOff: winHeight,
       adjIds: [
@@ -38,7 +38,7 @@ export function vertical(LoremChopsum) {
         elem4.id
       ]
     }),
-    new LoremChopsum(elem4, {
+    new Loremsition(elem4, {
       isVertical: true,
       cutOff: winHeight,
       adjIds: [
@@ -106,15 +106,20 @@ export function vertical(LoremChopsum) {
     //  containers[0].reLayout()
   //})
 
+  containers[1].div.addEventListener('onLayout', function () {
+    console.log('onLayout event')
+ 
+ })
+
   containers[1].div.addEventListener('onLayoutAll', function () {
-    console.log('hello layoutall')
+    console.log('onLayoutAll event!')
     containers[1].addLiElem("<span class='special'></span>This element is added after the 'onLayoutAll' event.", 0)
  })
 
   loopContainers(function (c) {
     c.div.addEventListener('onDropTo', function (ev) {
       liInc()
-      loopContainers(v => v.reCalculate())
+      loopContainers(function(v) { v.reCalculate()})
     })
   })
 
@@ -144,21 +149,21 @@ export function vertical(LoremChopsum) {
     containers.forEach(fn)
   }
 
-  loopContainers(v => v.init())
+  loopContainers(function(v) { v.init()})
   liInc()
-  loopContainers(v => v.reCalculate())
+  loopContainers(function(v) { v.reCalculate()})
 
   resizeThrottle(function () {
     console.log('resizing!')
-    loopContainers(v => v.cutOff = window.innerHeight - 20)
+    loopContainers(function(v) { v.cutOff = window.innerHeight - 20})
 
 
     // example of using the cutOffEnd method on the object's prototype.
     //Here, upon resize, it cuts the list when height is above specified value and prepends to adjacent container
 
-    loopContainers(v => v.cutOffEnd())
+    loopContainers(function(v) { v.cutOffEnd()})
     liInc()
-    loopContainers(v => v.reLayout())
+    loopContainers(function(v) { v.reLayout()})
 
   })
 

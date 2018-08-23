@@ -1,6 +1,6 @@
 
 
-export function horizontal (LoremChopsum, $) {
+export function horizontal (Loremsition, $) {
   $('.splitList').parent().remove();
   $('.bodyButton').remove()
   $('.container').show()
@@ -19,7 +19,7 @@ export function horizontal (LoremChopsum, $) {
 
   var winWidth = window.innerWidth; // recalculate windows height for cutoff on resize. Also run cutoff on resize
 
-  var cont1 = new LoremChopsum(elem, {
+  var cont1 = new Loremsition(elem, {
     isVertical: false,
     cutOff: winWidth,
     adjIds: [
@@ -29,7 +29,7 @@ export function horizontal (LoremChopsum, $) {
     ]
   })
 
-  var cont2 = new LoremChopsum(elem2, {
+  var cont2 = new Loremsition(elem2, {
     isVertical: false,
     cutOff: winWidth,
     adjIds: [
@@ -40,7 +40,7 @@ export function horizontal (LoremChopsum, $) {
     ]
    })
 
-   var cont3 = new LoremChopsum(elem3, {
+   var cont3 = new Loremsition(elem3, {
      isVertical: false,
     cutOff: winWidth,
   //  dropLimit: winWidth- winWidth/4,
@@ -51,7 +51,7 @@ export function horizontal (LoremChopsum, $) {
      ]
     })
 
-    var cont4 = new LoremChopsum(elem4, {
+    var cont4 = new Loremsition(elem4, {
       isVertical: false,
      cutOff: winWidth,
   //   dropLimit: winWidth- winWidth/4,
