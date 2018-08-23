@@ -1,5 +1,5 @@
 # Loremsition
-Loremsition
+High performance lightweight javascript library for content layout and animated rearrangement
 
 [Vertical demo](https://www.nielshtg.dk/loremsition/vertical) 
 
