@@ -14,6 +14,7 @@
 - maybe set {passive: true} as third argument on event start and event move - https://developers.google.com/web/updates/2017/01/scrolling-intervention
 - if id is not passed in options, it will get the div id or assign a number based id based on the order of instantiation(default)
 - possibly eliminate the need for having both height and width property on elt.props
+- fix dragging in ie9
 
 0.1
 - Refactor shuffle method to scale out and in use the _scaleElems method, call cutoff method after shuffle
@@ -42,8 +43,8 @@
 -------------------------------------------------------------------------------------------------------------------------------
 - write guessHeight algorithm
 - refactor guessHeight conditionals
-- refactor/split reLayout methid
 - throttle drag call on mouse/touch move
+- fix ie shaking behavior on transition
 
 
 Fixed:
