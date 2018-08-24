@@ -81,8 +81,9 @@ import {
   
       //if (e.type == 'touchstart') { e = e.originalEvent.touches[0] }
       startX = e.pageX, startY = e.pageY;
-      targetOffsetY = elt.offsetTop;
-      targetOffsetX = elt.offsetLeft;
+      targetOffsetY =   elt.props.pos.top + (thisInst.options.isVertical ? elt.props.margin : 0);
+      targetOffsetX =  elt.props.pos.left + (thisInst.options.isVertical ? 0 : elt.props.margin);
+
   
       ul.removeEventListener(eStart, pointerstart);
       window.addEventListener(eEnd, pointerupFunction); // refactor to add the once: true object to similar to jquery once. Wait for browser compatibility

@@ -1,6 +1,3 @@
-import {
-  setEvents
-} from "./utils.js"
 
 export {
   _animateBack,
@@ -8,46 +5,49 @@ export {
   _scaleElems
 };
 
-
 function _transToZero(elt, thisInst, speed) {
+
   if (speed == undefined) { var speed = '250ms ease' }
   window.getComputedStyle(elt)[thisInst.transformPrefix] // needed to apply the transition style dynamically
   elt.style[thisInst.transitionPrefix] = speed;
   elt.style[thisInst.transformPrefix] = thisInst.ifGpu // translateZ doesn't work for ie9
-  // Refactor into cssText line !!!!!!!!!!!!!!!
 };
 
 function _animateBack(elt, thisInst) {
   var o = thisInst.options;
 
-  var eltMarginLeft = o.isVertical ? 0 : elt.props.completeWidth - elt.offsetWidth; // set margin for horizontal
+  var eltMarginLeft = o.isVertical ? 0 : elt.props.margin; // get margin for horizontal
+  var eltMarginTop = o.isVertical ? elt.props.margin : 0 ; // get margin for vertical 
+
   if (thisInst.crossFlag && thisInst.newInst) {
 
     if (o.isVertical) {
-      var thisTop = thisInst.added.props.pos.top;
-      var thisLeft = thisInst.crossDistance(thisInst, thisInst.newInst);
+      var thisTop = thisInst.added.props.pos.top ;
+      var thisLeft = thisInst.newInst.distanceTo;
       var diff = Math.abs ( thisInst.props.divWidth - thisInst.newInst.props.divWidth)
 
 
     } else {
-      var thisTop = thisInst.crossDistance(thisInst, thisInst.newInst);
+      var thisTop = thisInst.newInst.distanceTo;
       var thisLeft = thisInst.added.props.pos.left;
 
     }
   } else {
+
     var thisTop = elt.props.pos.top,
         thisLeft = elt.props.pos.left;
+
   }
 
-// Refactor into cssText line !!!!!!!!!!!!!!!
+// TODO : Refactor into cssText line
   if (diff > 2) {
     elt.style.width = thisInst.newInst.props.divWidth + 'px'
     elt.style[thisInst.transitionPrefix] = 'width 200ms';
   }
 
-  elt.style.top = thisTop + 'px';
+  elt.style.top = thisTop  + 'px';
   elt.style.left = thisLeft + 'px';
-  elt.style[thisInst.transformPrefix] = 'translate3d(' + ((elt.props.currentPos.left - thisLeft) - eltMarginLeft) + 'px,' + (elt.props.currentPos.top - thisTop) + 'px,0px)';
+  elt.style[thisInst.transformPrefix] = 'translate3d(' + ((elt.props.currentPos.left - thisLeft) - eltMarginLeft) + 'px,' + (elt.props.currentPos.top - thisTop - eltMarginTop ) + 'px,0px)';
 
 };
 

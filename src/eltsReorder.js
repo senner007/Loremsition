@@ -207,13 +207,13 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
 var eltsReorder = {
   _eltsMoveForwardOrDown: function(elt, elts, thisInst, flag) {
 
-
     var plane = thisInst.options.isVertical ? 'top' : 'left';
     var eltn = elt.props.n;
     if (eltn > 0) {
 
       var eltPrev = elts[eltn - 1];
-      var eltPrevMid = eltPrev.props.pos[plane] + eltPrev.props.size / 2;
+      var eltPrevMid = eltPrev.props.pos[plane] + eltPrev.props.size / 2 + eltPrev.props.margin / 2;
+      
       if (elt.props.currentPos[plane] < eltPrevMid || flag) {
 
         elt.props.pos[plane] = eltPrev.props.pos[plane]; // swap position property
@@ -237,9 +237,9 @@ var eltsReorder = {
     if (eltn < elts.length - 1) {
 
       var eltNext = elts[eltn + 1];
-      var eltNextMid = eltNext.props.pos[plane] + eltNext.props.size / 2;
-      if (elt.props.currentPos[plane] + elt.props.size > eltNextMid || flag) {
+      var eltNextMid = eltNext.props.pos[plane] - elt.props.size + (eltNext.props.size + eltNext.props.margin) /2 + eltNext.props.margin;
 
+      if (elt.props.currentPos[plane] > eltNextMid || flag) {
         eltNext.props.pos[plane] = elt.props.pos[plane]; // swap position property
         elt.props.pos[plane] += eltNext.props.size;
         elts[eltn] = eltNext; // swap index in elts array
