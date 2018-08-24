@@ -410,13 +410,13 @@ function setEltProto (param) {
   }
 
 
-  Loremsition.prototype._addLiToObject = function (liText, setPos = this.elts.length) {
+  Loremsition.prototype._addLiToObject = function (liText, setPos = this.elts.length, width, height) {
 
     var isVertical = this.options.isVertical;
 
     var createLi = _curryLi(this, liText, setPos, 0);
 
-    return createLi(v => isVertical ? 0 : 200, v => isVertical ? 200 : 0)    //random guessed number
+    return createLi(v => isVertical ? 0 : (width || 200), v => isVertical ? (height || 200)  : 0)    //random guessed number
 
   }
 

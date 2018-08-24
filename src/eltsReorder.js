@@ -180,7 +180,14 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
     // elt.style.width = thisInst.newInst.props.divWidth + 'px'
       ///////////////////////////////////////////////////////////
 
-    thisInst.added = thisInst._addLiToObject.call(thisInst.newInst, elt.innerHTML, insertPos);
+    var diff = Math.abs ( thisInst.props.divWidth - thisInst.newInst.props.divWidth)
+
+    // if new div width is not same - set to undefined if in vertical
+    
+    var width =  elt.props.completeWidth
+    var height =  diff < 2  ? elt.props.completeHeight: o.isVertical ? undefined : elt.props.completeHeight;
+  
+    thisInst.added = thisInst._addLiToObject.call(thisInst.newInst, elt.innerHTML, insertPos, width, height);
 
   },
   _deleteElt: function(thisInst) { // going back to the originating container
