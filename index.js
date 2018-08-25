@@ -18,11 +18,8 @@ import {resizeThrottle, liInc} from './examples/utils/utils_helpers'
         var containers = vertical(Loremsition);
     } 
 
+    containers[0].lock();
 
-    containers[1].div.addEventListener('onLayout', function () {
-        console.log('onLayout event')
-     
-     })
     
       containers[1].div.addEventListener('onLayoutAll', function () {
         console.log('onLayoutAll event!')
@@ -50,7 +47,6 @@ import {resizeThrottle, liInc} from './examples/utils/utils_helpers'
       console.log('resizing!')
       loopContainers(function(v) { v.setCutOff(path[1] == 'horizontal' ? window.innerWidth : window.innerHeight)})
   
-        console.log(containers[0].cutOff)
       // example of using the cutOffEnd method on the object's prototype.
       //Here, upon resize, it cuts the list when height is above specified value and prepends to adjacent container
   

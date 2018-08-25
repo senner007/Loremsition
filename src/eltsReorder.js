@@ -39,93 +39,37 @@ function _onDrag(elt, thisInst) { // Drag
 
 
   if (home && thisInst.crossFlag == true) { // go back to originating container
-  /////////////////////////////////
-  //  delete thisInst.emptySpace;
-  ////////////////////////////////////
+
     onTrigger._deleteElt(thisInst);
     thisInst.crossFlag = false;
     onTrigger._homeEltsOpen(elt, elts, thisInst);
 
   } else if (inNewInst) { // still in new instance container
-    /////////////////////////////////
-    //  delete thisInst.emptySpace;
-    ////////////////////////////////////
+
     var adjConElts = thisInst.newInst.elts;
 
   } else if (thisInst.adjInst1 && !home) { // if the element has moved to a new instance and no longer within home distance
 
     thisInst.crossFlag = true;
 
-    for (var i = 0, adjLenght = thisInst.adjCon.length; i < adjLenght; i++) {
-      var p = thisInst.adjCon[i];
-      var dropLimit = thisInst[p].props.ulSize < thisInst[p].props.dropLimit || thisInst[p].props.dropLimit == false;
-      if (thisInstMid < thisInst[p].distanceTo + thisInst[p].props[measure] && thisInstMid > thisInst[p].distanceTo && dropLimit) { // found new instance
+    for (let i = 0, adjLenght = thisInst.adjCon.length; i < adjLenght; i++) {
+      let p = thisInst.adjCon[i];
+      let dropLimit = thisInst[p].props.ulSize < thisInst[p].props.dropLimit || thisInst[p].props.dropLimit == false;
+      let locked = thisInst[p].props.locked
+      if (thisInstMid < thisInst[p].distanceTo + thisInst[p].props[measure] && thisInstMid > thisInst[p].distanceTo && dropLimit && !locked) { // found new instance
         onTrigger._deleteElt(thisInst); // delete element from prvious instance(thisInst.newInst) and animate
         thisInst.newInst = thisInst[p];
         var adjConElts = thisInst.newInst.elts;
-        onTrigger._addElt(elt, adjConElts, elts, o, thisInst);
+        onTrigger._addElt(elt, adjConElts, o, thisInst);
         onTrigger._homeEltsClose(elt, elts, thisInst);
 
         break;
       }
 
     }
+
     if (adjConElts == undefined) { // in empty space
-         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // thisInst.emptySpace = {};
-      //
-      // if (posObj[dir] < 0) {
-      //
-      //   for (let val of thisInst.adjCon) {
-      //     if (thisInst[val].props.divOffset[dir] < (thisInst.props.divOffset[dir] + posObj[dir])) {
-      //       var min = min || thisInst[val];
-      //       if (thisInst[val].props.divOffset[dir] > min.props.divOffset[dir]) {
-      //         min = thisInst[val];
-      //       }
-      //     }
-      //   }
-      //
-      //   var max = thisInst;
-      //   var minOffset = min ? min.props.divOffset[dir] : Number.NEGATIVE_INFINITY;
-      //
-      //   for (let val of thisInst.adjCon) {
-      //     var valOffset = thisInst[val].props.divOffset[dir];
-      //     if (valOffset > minOffset) {
-      //       if (valOffset < max.props.divOffset[dir]) {
-      //         max = thisInst[val];
-      //       }
-      //     }
-      //   }
-      //
-      //   thisInst.emptySpace.min = min != undefined ? min.props.divOffset[dir] + min.props[measure] / 2 : Number.NEGATIVE_INFINITY
-      //   thisInst.emptySpace.max = max.props.divOffset[dir] - max.props[measure] / 2
-      //
-      //
-      // } else {
-      //   for (let val of thisInst.adjCon) {
-      //     if (thisInst[val].props.divOffset[dir] > (thisInst.props.divOffset[dir] + posObj[dir])) {
-      //       var max = max || thisInst[val];
-      //       if (thisInst[val].props.divOffset[dir] < max.props.divOffset[dir]) {
-      //         max = thisInst[val];
-      //       }
-      //     }
-      //   }
-      //   var min = thisInst;
-      //   var maxOffset = max ? max.props.divOffset[dir] : Number.POSITIVE_INFINITY
-      //   for (let val of thisInst.adjCon) {
-      //     var valOffset = thisInst[val].props.divOffset[dir];
-      //     if (valOffset < maxOffset) {
-      //       if (valOffset > min.props.divOffset[dir]) {
-      //         min = thisInst[val];
-      //       }
-      //     }
-      //   }
-      //
-      //   thisInst.emptySpace.min = min.props.divOffset[dir] + min.props[measure] - thisInst.props[measure] / 2;
-      //   thisInst.emptySpace.max = max != undefined ? max.props.divOffset[dir] - thisInst.props[measure] / 2 : Number.POSITIVE_INFINITY
-      //
-      // }
-      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       console.log('in empty space')
       onTrigger._homeEltsClose(elt, elts, thisInst);
       onTrigger._deleteElt(thisInst);
 
@@ -160,13 +104,13 @@ function _onDrag(elt, thisInst) { // Drag
 
 var onTrigger = { //These will trigger when the elt is crossing over to connected adjacent container/instance
 
-  _addElt: function(elt, adjConElts, elts, o, thisInst) {
-    var objOffset = o.isVertical ? 'top' : 'left',
+  _addElt: function(elt, adjConElts, o, thisInst) {
+    var plane = o.isVertical ? 'top' : 'left',
       adjEltsLength = adjConElts.length,
       insertPos = adjEltsLength;
 
     for (let i = 0; i < adjEltsLength; i++) { //Loop the array
-      if (elt.props.currentPos[objOffset] < adjConElts[i].props.pos[objOffset] + adjConElts[i].props.size / 2) {
+      if (elt.props.currentPos[plane] < adjConElts[i].props.pos[plane] + adjConElts[i].props.size / 2) {
         insertPos = i;
         break;
       };
@@ -275,10 +219,6 @@ var eltsReorder = {
     var stringCss = o.isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
     elem.style.cssText = thisInst.transitionPrefix + ":0s;" + plane + ":" + elem.props.pos[plane] + "px;" + thisInst.transformPrefix + ':' + stringCss;
 
-
-
-   
-
     _transToZero(elem, thisInst);
   },
 }
@@ -286,9 +226,6 @@ var eltsReorder = {
 function _onStop(elt, thisInst) { // Stop
   
   
-  /////////////////////////////////
-  //  delete thisInst.emptySpace;
-  ////////////////////////////////////
   elt.endDate = new Date();
   elt.dragSpeed = (elt.endDate.getTime() - elt.startDate.getTime()) / 1000;
   // elt.dragSpeed measuresthe time it takes to initialize the drag to when it is dropped. A smaller difference
@@ -312,7 +249,7 @@ function _onStop(elt, thisInst) { // Stop
    
     elt.locked = true;
 
-    thisInst.lock.call(thisInst.newInst);
+    thisInst.newInst.props.tempLock = true;
 
     thisInst.newInst.ul.insertBefore(thisInst.added, thisInst.newInst.elts[thisInst.added.props.n + 1]);
     thisInst.reCalculate.call(thisInst.newInst);
@@ -329,9 +266,13 @@ function _onStop(elt, thisInst) { // Stop
       appendRemove.call(thisInst)
       thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
       thisInst.newInst.div.dispatchEvent(new CustomEvent('onDropTo'));
-      elt.style.zIndex = 0; // TODO : FIX duplication
-      thisInst.div.style.zIndex = 0;
-      thisInst.unlock.call(thisInst.newInst);
+      // elt.style.zIndex = 0; // TODO : FIX duplication
+
+      // thisInst.adjCon.forEach(function (v) {
+      //   thisInst[v].div.style.zIndex = 1;
+      //  })
+
+      thisInst.newInst.props.tempLock = false;
       delete thisInst.newInst
       
     }
@@ -352,8 +293,10 @@ function _onStop(elt, thisInst) { // Stop
         console.log('afterDrop - no cut');
         thisInst.div.dispatchEvent(new CustomEvent('onDropTo'));
         thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
-        elt.style.zIndex = 0;
-        thisInst.div.style.zIndex = 0;
+        // elt.style.zIndex = 0;
+        // thisInst.adjCon.forEach(function (v) {
+        //   thisInst[v].div.style.zIndex = 1;
+        //  })
         this.removeEventListener('transitionend', _callback);
       }
 

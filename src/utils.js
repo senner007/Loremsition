@@ -71,7 +71,7 @@ function getFirstInstance(thisInst) {
 
 function _elemsToCutAppend(thisInst, adjInst) {
 
-  if (adjInst.props.cutOff == false) {
+  if (adjInst.props.cutOff == false ) {
     return function() {};
   }
 
@@ -89,6 +89,8 @@ function _elemsToCutAppend(thisInst, adjInst) {
 
   var instToAddTo = next != undefined ? next : getFirstInstance(thisInst); // if drop to last instance: cutoff to first instance
 
+  if (instToAddTo.props.locked) return;
+  
   var addedElemsArray = [];
 
   if (elemsToCut.length != 0) {

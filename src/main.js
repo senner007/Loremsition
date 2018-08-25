@@ -11,7 +11,6 @@
     _elemsToCutAppend
   } from "./utils.js"
 
-
   import {
     _addEventHandlers
   } from "./handlers.js"

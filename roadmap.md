@@ -28,7 +28,6 @@
 - when using a single list, allow the option to constrain to a single axis - http://www.javascriptkit.com/javatutors/touchevents.shtml(bottom)
 ----------------------------------------------------------------------------------------------------------------------------
 - fix onReorder event to only show reorder on the desired instance
-- fix lock method
 - call scale method in removeLiElem
 - allow option to cutoff to specified instance
 - allow shuffle method with no parameters, otherwise should take an array of instances
@@ -44,7 +43,7 @@
 - write guessHeight algorithm
 - refactor guessHeight conditionals
 - throttle drag call on mouse/touch move
-- fix ie shaking behavior on transition
+
 
 
 Fixed:
@@ -92,7 +91,9 @@ ThisInst.left + thisInst.w /2 > thisInst[p].left && ThisInst.left + thisInst.w /
 - Setup with css grid
 - define getter and setter for position, size
 - recalculate adjInst(n).distanceTo & props.divWidth/divHeight on reLayout
-
+- fix lock method
+- fix ie shaking behavior on transition (adding ie/edge specific z-index)
+- 
 Partially fixed:
 - prevent multitouch !!! - The element will freeze and animate back if multi touch is detected. Find a way to simple ignore additional touches
 
