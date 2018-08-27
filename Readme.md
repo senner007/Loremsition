@@ -2,23 +2,21 @@
 High performance lightweight javascript library for content layout and animated rearrangement
 
 [Vertical demo](https://www.nielshtg.dk/loremsition/vertical) 
+[Horizontal demo](https://www.nielshtg.dk/loremsition/horizontal) 
 
-[Production Vertical demo](https://www.nielshtg.dk/loremsition/vertical-prod/)
-<!-- [Horizontal Demo](https://www.nielshtg.dk/loremsition/horizontal)  -->
 
 ### Install dependencies:
 - npm install
 
 ### To Run
-- npm run dev - go to localhost:1234/vertical or localhost:1234/horizontal
-- note that browser must be reloaded manually after parcel build
+- npm run dev - go to localhost:1234/loremsition/vertical or localhost:1234/loremsition/horizontal
 
 ### Fix
  - If parcel complains that functions are not functions you can:
  - 1. remove the cache dir, or
  - 2. repeat the install process
 
- ### To build
+ ### To build (loremsition.js)
 - npm run build
 
  ### Browser support:
