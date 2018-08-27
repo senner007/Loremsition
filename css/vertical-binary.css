@@ -4,7 +4,6 @@
 }
 
 /* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
-
 @media all and (-ms-high-contrast: none),
 (-ms-high-contrast: active) {
   #loremsition-vertical-1 {
@@ -22,6 +21,7 @@
   .grid-vertical {
     position: absolute;
     width: inherit;
+  }
 }
 
 .loremsition-vertical {
