@@ -20,14 +20,8 @@
     position: absolute;
   }
 
-  .container {
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 70%;
-  
-  }
-
-   .grid-vertical {
+  .grid-vertical {
+    
     position: absolute;
     width: inherit;
 } 
