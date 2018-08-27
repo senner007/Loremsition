@@ -1,0 +1,81 @@
+.grid-vertical {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  #loremsition-vertical-1 {
+    width: 50%;
+
+    left: 0;
+    position: absolute;
+  }
+  #loremsition-vertical-2 {
+    width: 50%;
+
+    left: 50%;
+    position: absolute;
+  }
+  .grid-vertical {
+    position: absolute;
+    width: inherit;
+}
+
+.loremsition-vertical {
+  display: block;
+  transform: translateZ(0);
+  /* don't know if it helps */
+  position: relative;
+}
+
+.loremsition-list-vertical {
+  display: block;
+  z-index: 1;
+  margin: 5px;
+  transform: translateZ(0);
+  /* don't know if it helps */
+  position: relative;
+}
+
+.listItem {
+  position: absolute;
+  list-style: none;
+  padding: 10px;
+  padding-top: 10px;
+  margin-top: 5px;
+  width: 100%;
+  font-size: 1.2vw;
+  border-radius: 1px;
+  line-height: 21px;
+  transform: translateZ(0);
+  color: black;
+  border-top: 2px solid DARKSLATEGRAY;
+  font-weight: bold;
+  /* text-shadow: whitesmoke -1px -1px 0px; */
+  
+}
+
+.listItem span {
+  float: left;
+
+  background-repeat: repeat;
+  margin-right: 6px;
+  margin-bottom: -10px;
+  font-size: 75px;
+  line-height: 40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-right: 12px;
+  padding-left: 12px;
+  margin-top: -10px;
+  margin-left: -10px;
+  color: GAINSBORO;
+  font-weight: bold;
+  /* font-family: 'Fredericka the Great', cursive; */
+  background-color: DARKSLATEGRAY;
+  text-shadow: black -1px -1px 0px;
+}
+

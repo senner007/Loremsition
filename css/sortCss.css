@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   font-family: "Times New Roman", Times, serif;
+  
+
 }
 
 html {
@@ -20,11 +22,13 @@ body {
 }
 
 .container {
-  margin: 0;
-  position: absolute;
+  margin: 0 auto;
+
   margin-top: 10px;
-  width: 100%;
+  width: 70%;
 }
+
+
 
 div:active {
   z-index: 2;
@@ -55,6 +59,8 @@ li:active {
   -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, .7);
   -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, .7);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, .7);
-  cursor: grabbing;
+
   z-index: 10;
 }
+
+
