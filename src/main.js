@@ -309,7 +309,7 @@ function setEltProto (param) {
   }
 
   function _outerHeight(el) { // replacing jquery outerWidth(true)
-
+    
     var height = el.offsetHeight;
     var style = getComputedStyle(el);
     height += parseInt(style.marginTop) + parseInt(style.marginBottom);
@@ -444,9 +444,9 @@ function setEltProto (param) {
   /*------------------------------------------------------------------------------------------------------------------------*/
 
 
-  Loremsition.prototype.removeLiElem = function(elt, transition, callBack) { // Remove new li to previous collection
-
+  Loremsition.prototype.removeLiElem = function(elt, transition, callBack, setUl = true) { // Remove new li to previous collection
     if (elt == undefined) {return;} // if the requested elt to delete doesn't exist
+    if (!isNaN(elt)) { elt = this.elts[Math.min(Math.max(parseInt(elt), 0), this.elts.length -1)];} // elt input is a number 
     var n = elt.props.n,
       thisElts = this.elts,
       eltHeight = thisElts[n].props.completeHeight,
@@ -461,24 +461,27 @@ function setEltProto (param) {
 
     if (transition) { // if the option to animate in the removeLiElem method used after init is true. Used in cutOff method
 
-
+      elt.addEventListener('transitionend', _animateCallback);
       elt.style[this.transformPrefix] = 'scale(0.5,0.5)';
       elt.style.opacity = '0';
       elt.style[this.transitionPrefix] = '250ms';
-      setTimeout(function() {
-        elt.remove()
-        if (callBack) {
-          callBack(); //the callback is fired after the animation has finished
-          // use transitionend instead
-        }
-      }, 250);
+
+      function _animateCallback() {
+        elt.removeEventListener('transitionend', _animateCallback);
+          elt.remove()
+          if (callBack) {
+            callBack(); //the callback is fired after the animation has finished
+            // use transitionend instead
+          }
+      }
+
     } else {
-
       elt.remove();
-
     }
     // recalculate the height or width of the ul after deleting items
+    if (setUl) {
+      var ulSize = this.options.isVertical ? this.props.ulSize - eltHeight : this.props.ulSize - eltWidth;
+      _setUlSize(ulSize, this)
+    }
 
-    var ulSize = this.options.isVertical ? this.props.ulSize - eltHeight : this.props.ulSize - eltWidth;
-    _setUlSize(ulSize, this)
   };

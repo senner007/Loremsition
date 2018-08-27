@@ -107,20 +107,6 @@ function _addEventHandlers(thisInst) {
 
     if (hasMoved == true) {
 
-      if (document.documentMode || /Edge/.test(navigator.userAgent)) { // if IE || Edge
-        console.log("ie!")
-        elt.style.zIndex = 0; // TODO : FIX duplication
-
-        thisInst.adjCon.forEach(function (v) {
-          thisInst[v].div.style.zIndex = 1;
-        })
-
-      } else {
-        elt.style.zIndex = 0; // TODO : FIX duplication
-        thisInst.div.style.zIndex = 1;
-      }
-
-
       hasMoved = false;
       clearClass();
       elt.style[transformPrefix] = 'translateZ(0) translate3d(' + 0 + 'px, ' + 0 + 'px, 0px)';

@@ -54,7 +54,7 @@ function _onDrag(elt, thisInst) { // Drag
 
     for (let i = 0, adjLenght = thisInst.adjCon.length; i < adjLenght; i++) {
       let p = thisInst.adjCon[i];
-      let dropLimit = thisInst[p].props.ulSize < thisInst[p].props.dropLimit || thisInst[p].props.dropLimit == false;
+      let dropLimit = thisInst[p].props.ulSize + elt.props.size < thisInst[p].props.dropLimit || thisInst[p].props.dropLimit == false;
       let locked = thisInst[p].props.locked
       if (thisInstMid < thisInst[p].distanceTo + thisInst[p].props[measure] && thisInstMid > thisInst[p].distanceTo && dropLimit && !locked) { // found new instance
         onTrigger._deleteElt(thisInst); // delete element from prvious instance(thisInst.newInst) and animate
@@ -69,7 +69,7 @@ function _onDrag(elt, thisInst) { // Drag
     }
 
     if (adjConElts == undefined) { // in empty space
-       console.log('in empty space')
+      //  console.log('in empty space')
       onTrigger._homeEltsClose(elt, elts, thisInst);
       onTrigger._deleteElt(thisInst);
 
@@ -136,7 +136,7 @@ var onTrigger = { //These will trigger when the elt is crossing over to connecte
   },
   _deleteElt: function(thisInst) { // going back to the originating container
 
-    thisInst.removeLiElem.call(thisInst.newInst, thisInst.added, false);
+    thisInst.removeLiElem.call(thisInst.newInst, thisInst.added, false, false, false);
     delete thisInst.added
     delete thisInst.newInst;
 
@@ -266,14 +266,9 @@ function _onStop(elt, thisInst) { // Stop
       appendRemove.call(thisInst)
       thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
       thisInst.newInst.div.dispatchEvent(new CustomEvent('onDropTo'));
-      // elt.style.zIndex = 0; // TODO : FIX duplication
-
-      // thisInst.adjCon.forEach(function (v) {
-      //   thisInst[v].div.style.zIndex = 1;
-      //  })
-
       thisInst.newInst.props.tempLock = false;
       delete thisInst.newInst
+      setZIndex();
       
     }
 
@@ -293,11 +288,8 @@ function _onStop(elt, thisInst) { // Stop
         console.log('afterDrop - no cut');
         thisInst.div.dispatchEvent(new CustomEvent('onDropTo'));
         thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
-        // elt.style.zIndex = 0;
-        // thisInst.adjCon.forEach(function (v) {
-        //   thisInst[v].div.style.zIndex = 1;
-        //  })
         this.removeEventListener('transitionend', _callback);
+        setZIndex();
       }
 
     }
@@ -308,9 +300,21 @@ function _onStop(elt, thisInst) { // Stop
 
   thisInst.crossFlag = false;
 
+  function setZIndex () {
+    if (document.documentMode || /Edge/.test(navigator.userAgent)) { // if IE || Edge 
+   
+      thisInst.adjCon.forEach(function (v) {
+        thisInst[v].div.style.zIndex = 1;
+      })
+
+    } 
+      elt.style.zIndex = 0; // TODO : FIX duplication
+      thisInst.div.style.zIndex = 1;
+  }
+
   function appendRemove() {
     delete thisInst.added // the object that is a reference to the added object is deleted
-    thisInst.removeLiElem(elt, false); // the dragged elt from the previous/starting instance is deleted once animated to its position  
+    thisInst.removeLiElem(elt, false, true); // the dragged elt from the previous/starting instance is deleted once animated to its position  
 
     _scaleElems(_elemsToCutAppend(thisInst, thisInst.newInst), thisInst);
   };
