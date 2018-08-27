@@ -3,13 +3,14 @@
   "version": "0.9.0",
   "description": "High performance lightweight javascript library for content layout and animated rearrangement",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/senner007/Loremsition.git"
+    "type": "git",
+    "url": "https://github.com/senner007/Loremsition.git"
   },
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "webpack"
+    "dev": "parcel index.html --reload",
+    "build": "webpack",
+    "buildExamples": "parcel build index.html --out-dir prodExamples"
   },
   "keywords": [
     "DOM",
@@ -31,10 +32,12 @@
     "@babel/core": "^7.0.0-rc.1",
     "@babel/preset-env": "^7.0.0-rc.1",
     "babel-loader": "^8.0.0-beta.4",
+    "examples": "^0.1.0",
     "jquery": "^3.3.1"
   },
   "devDependencies": {
-    "parcel-bundler": "latest",
+    "cssnano": "^4.1.0",
+    "parcel-bundler": "github:senner007/parcel",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   }
