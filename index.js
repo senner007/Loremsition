@@ -3,7 +3,7 @@ import './css/sortCss.css';
 import './css/horizontal.css';
 import './css/vertical-binary.css';
 
-import "babel-polyfill";
+import 'core-js/features/promise';  
 import 'whatwg-fetch'
 
 (function () {
