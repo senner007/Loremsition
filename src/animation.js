@@ -5,12 +5,18 @@ export {
   _scaleElems
 };
 
+
+
 function _transToZero(elt, thisInst, speed) {
 
   if (speed == undefined) { var speed = '250ms ease' }
-  window.getComputedStyle(elt)[thisInst.transformPrefix] // needed to apply the transition style dynamically
-  elt.style[thisInst.transitionPrefix] = speed;
+  // calling computed style makes ios mobile transition smoother
+  // TODO : no computedStyle on instance crossing horizontal
+ window.getComputedStyle(elt)[thisInst.transformPrefix] 
+ elt.style[thisInst.transitionPrefix] = speed;
+ 
   elt.style[thisInst.transformPrefix] = thisInst.ifGpu // translateZ doesn't work for ie9
+
 };
 
 function _animateBack(elt, thisInst) {
