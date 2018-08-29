@@ -32,7 +32,7 @@ export default function(Loremsition) {
 
   containers[1].div.addEventListener('onLayoutAll', function () {
     containers[1].removeLiElem(1, true, function () {
-      containers[1].addLiElem("<span class='special'>E</span>element added after remove animation", 0)
+      containers[1].addLiElem("<span class='special'>O</span>dio ut sem nulla pharetra diam sit amet nisl suscipit. Luctus accumsan tortor posuere ac. Ipsum consequat nisl vel pretium lectus quam id leo. Aliquet enim tortor at auctor urna. Urna nec tincidunt praesent semper feugiat", 0)
     })
   })
 
