@@ -1,10 +1,19 @@
 .grid-horizontal {
   display: grid;
+  margin-top: 10%;
+}
+
+.container {
+  width: 100%;
 }
 
 .loremsition-horizontal {
-  height: 60px;
   position: relative;
+  height: 300px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  margin: 0 auto;
+  top: 35%;
 }
 
 .loremsition-list-horizontal {
@@ -17,24 +26,46 @@
 
 .listItem-horizontal {
   position: absolute;
-  font-size: 18px;
-  text-align: center;
-  height: 42px;
-  line-height: 42px;
-  margin-left: 6px;
-  padding-left: 8px;
-  padding-right: 8px;
+  margin-top: 110px;
+  height: 70px;
+  display: inline-block;
   border: 1px solid black;
-  white-space: nowrap;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .listItem-horizontal span {
-  font-size: 20px;
-  color: #00A2CD;
-  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: left;
+  font-size: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: GAINSBORO;
+  font-weight: bold;
+  /* font-family: 'Fredericka the Great', cursive; */
+  background-color: DARKSLATEGRAY;
+}
+
+li .inner-div {
+  height: 100%;
+  margin-top: 10px;
+  ;
+  display: inline-block;
+  font-size: 3vw;
+  line-height: 50px;
+  padding-left: 40px;
+  padding-right: 20px;
   vertical-align: middle;
-  position: relative;
-  top: -3px;
-  margin-right: 2px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  li .inner-div {
+    font-size: 4vw;
+    padding-left: 15px;
+    padding-right: 10px;
+  }
 }
