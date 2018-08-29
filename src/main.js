@@ -254,8 +254,7 @@ function setEltProto (param) {
       let margin = _getMargin(elt, thisInst.options.isVertical);
       elt.style[thisInst.transitionPrefix] = '0ms'; // make sure the elts don't animate into position
       _addToObject(elt, i, thisHeight, thisWidth, margin, thisInst, {top:newPosTop, left:newPosLeft});
-
-      //elt.style[thisInst.transformPrefix] = 'translate3d(0px, 0px, 0px)'; // must be off for scale to work
+     // elt.style[thisInst.transformPrefix] = 'translate3d(0px, 0px, 0px)'; // must not be set for scale to work
     };
     return size; // return the size of the ul
   };
