@@ -20,7 +20,7 @@ High performance lightweight javascript library for content layout and animated 
 - npm run build
 
  ### Browser support:
-  - IE 10+
+  - IE 9+
   - Chrome
   - Firefox
   - Edge
