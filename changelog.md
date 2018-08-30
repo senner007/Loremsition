@@ -23,3 +23,4 @@
 - Allow individual width of instance container in vertical mode.
 - Use css grid to position containers or set to absolute or percentage values;
 - Ie 10+ support
+- preliminary ie9 support (without animations)

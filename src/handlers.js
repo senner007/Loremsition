@@ -32,7 +32,11 @@ function _addEventHandlers(thisInst) {
     dontTouch = false,
     startX,
     startY,
-    hasMoved;
+    hasMoved,
+    ieStartX,
+    ieStartY
+
+  document.onselectstart = function() { return false; } // prevent text selection in ie9
 
   ul.addEventListener(eStart, pointerstart)
 
@@ -52,7 +56,6 @@ function _addEventHandlers(thisInst) {
     elt.style[transitionPrefix] = '0s';
 
 
-
     if (document.documentMode || /Edge/.test(navigator.userAgent)) { // if IE || Edge
 
       thisInst.adjCon.forEach(function (v) {
@@ -64,6 +67,13 @@ function _addEventHandlers(thisInst) {
     thisInst.div.style.zIndex = 99;
 
     elt.startDate = new Date();
+
+    if( !thisInst.transSupport) {
+      if (!parseInt(elt.style.left)) elt.style.left = '0px';
+      if (!parseInt(elt.style.top)) elt.style.top = '0px';
+      ieStartX = e.pageX - parseInt(elt.style.left);
+      ieStartY = e.pageY - parseInt(elt.style.top);
+    }
 
     startX = e.pageX, startY = e.pageY;
     targetOffsetY = elt.props.pos.top + (thisInst.options.isVertical ? elt.props.margin : 0);
@@ -90,8 +100,14 @@ function _addEventHandlers(thisInst) {
     newDx = e.pageX - startX;
     newDy = e.pageY - startY;
 
-
-    elt.style[transformPrefix] = 'translate3d(' + newDx + 'px, ' + newDy + 'px, 0px) translateZ(0)';
+    if( !thisInst.transSupport) {
+      elt.style.top = e.pageY - ieStartY  + 'px';
+      elt.style.left = e.pageX  - ieStartX + 'px';
+    }
+    else {
+       elt.style[transformPrefix] = 'translate3d(' + newDx + 'px, ' + newDy + 'px, 0px) translateZ(0)';
+    }
+   
 
 
     elt.props.currentPos.top = targetOffsetY + newDy;

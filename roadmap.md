@@ -14,7 +14,6 @@
 - maybe set {passive: true} as third argument on event start and event move - https://developers.google.com/web/updates/2017/01/scrolling-intervention
 - if id is not passed in options, it will get the div id or assign a number based id based on the order of instantiation(default)
 - possibly eliminate the need for having both height and width property on elt.props
-- fix dragging in ie9
 
 0.1
 - Refactor shuffle method to scale out and in use the _scaleElems method, call cutoff method after shuffle
@@ -31,14 +30,11 @@
 - call scale method in removeLiElem
 - allow option to cutoff to specified instance
 - allow shuffle method with no parameters, otherwise should take an array of instances
-- Use normalize.css
 - Allow vertical instances to be placed vertically above/under. Create example with 4 vertical instances aligned horizontally which then realigns to 2 above and 2 under in landscape mode.
 - Validate html with w3
 - Optional sorting functionality - drag from but not reorder
-- Put crossflag on instance object - not prototype
 - Set initial div.id on elt
 - return elt, elts, thisInst and thisInst.newInst with onDropTo, onDropFrom callbacks
-- allow user to specify delay before animating elements
 -------------------------------------------------------------------------------------------------------------------------------
 - write guessHeight algorithm
 - refactor guessHeight conditionals
@@ -93,7 +89,10 @@ ThisInst.left + thisInst.w /2 > thisInst[p].left && ThisInst.left + thisInst.w /
 - recalculate adjInst(n).distanceTo & props.divWidth/divHeight on reLayout
 - fix lock method
 - fix ie shaking behavior on transition (adding ie/edge specific z-index)
-- 
+- Put crossflag on instance object - not prototype
+- fix dragging in ie9
+
+
 Partially fixed:
 - prevent multitouch !!! - The element will freeze and animate back if multi touch is detected. Find a way to simple ignore additional touches
 

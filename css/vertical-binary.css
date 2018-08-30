@@ -29,6 +29,32 @@
     right: 0;
   }
 }
+/* https://stackoverflow.com/questions/7364891/how-to-define-specific-css-rules-for-ie9-alone  Clean up/remove duplication !!! */
+@media screen and (min-width:0) and (min-resolution: .001dpcm) { 
+  #loremsition-vertical-1 {
+    width: 50%;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+  }
+
+  #loremsition-vertical-2 {
+    width: 50%;
+    left: 50%;
+    position: absolute;
+    display: inline-block;
+  }
+
+  .grid-vertical {
+    position: absolute;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    display: inline-block;
+  }
+ }
 
 .loremsition-vertical {
   display: block;

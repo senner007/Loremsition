@@ -58,6 +58,7 @@ function _animateBack(elt, thisInst) {
 };
 
 function _scaleElems(elems, thisInst) {
+  if(!thisInst.transSupport) return; // for IE - will not scale out and in
  if (elems == undefined) { return; }
  var elems = elems, // elems is an array of elements to scale in after they have been added
     thisInst = thisInst;

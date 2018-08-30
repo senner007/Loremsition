@@ -467,20 +467,21 @@ function setEltProto (param) {
     if (transition) { // if the option to animate in the removeLiElem method used after init is true. Used in cutOff method
 
       elt.addEventListener('transitionend', _animateCallback);
+      if (!this.transSupport) _animateCallback();
       elt.style[this.transformPrefix] = 'scale(0.5,0.5)';
       elt.style.opacity = '0';
       elt.style[this.transitionPrefix] = '250ms';
 
-      function _animateCallback() {
-        elt.removeEventListener('transitionend', _animateCallback);
+      function _animateCallback() {    
+        elt.removeEventListener('transitionend', _animateCallback);  
           elt.remove()
           if (callBack) {
             callBack(); //the callback is fired after the animation has finished
             // use transitionend instead
           }
       }
-
     } else {
+     
       elt.remove();
     }
     // recalculate the height or width of the ul after deleting items

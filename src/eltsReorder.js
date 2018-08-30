@@ -1,7 +1,6 @@
 
 import {
-  _elemsToCutAppend,
-  // setEvents
+  _elemsToCutAppend
 } from "./utils.js"
 import {
   _animateBack,
@@ -259,6 +258,8 @@ function _onStop(elt, thisInst) { // Stop
 
     elt.addEventListener('transitionend', _callback);
 
+    if (!thisInst.transSupport) _callback();
+
     function _callback() {
       this.removeEventListener('transitionend', _callback);
       thisInst.added.style.opacity = 1
@@ -283,6 +284,8 @@ function _onStop(elt, thisInst) { // Stop
       thisInst.ul.insertBefore(elt, thisInst.elts[elt.props.n + 1]);
 
       elt.addEventListener('transitionend', _callback);
+
+      if (!thisInst.transSupport) _callback();
 
       function _callback() {
         console.log('afterDrop - no cut');
