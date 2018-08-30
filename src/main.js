@@ -110,7 +110,9 @@ function setEltProto (param) {
     // this.options = Object.assign({}, defaults, options);
     this.options = mergeObject({}, defaults, options); // Object.assign alternative
     this.props.cutOff = this.options.cutOff;
+    delete this.options.cutOff;
     this.props.dropLimit = this.options.dropLimit;
+    delete this.options.dropLimit;
     this.ul.style[transformPrefix] = 'translate3d(0px,0px,0px)';
     this.props.ulSize = 0;
     this.transitionPrefix = transitionPrefix;
@@ -168,12 +170,16 @@ function setEltProto (param) {
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 
 
-
-
   Loremsition.prototype.setCutOff = function (cutOff){
 
       this.props.cutOff = cutOff
   };
+
+  Loremsition.prototype.setDropLimit = function (dropLimit){
+
+    this.props.dropLimit = dropLimit
+};
+
 
   Loremsition.prototype.getInstances = function() {
     // get object containing all instances, but without the proto

@@ -32,7 +32,7 @@ export default function(Loremsition) {
 
   containers[1].div.addEventListener('onLayoutAll', function () {
     containers[1].removeLiElem(1, true, function () {
-      containers[1].addLiElem("<span class='special'>O</span>dio ut sem nulla pharetra diam sit amet nisl suscipit. Luctus accumsan tortor posuere ac. Ipsum consequat nisl vel pretium lectus quam id leo. Aliquet enim tortor at auctor urna. Urna nec tincidunt praesent semper feugiat", 0)
+      containers[1].addLiElem("<span class='special'>O</span>dio ut sem nulla pharetra diam sit amet nisl suscipit. Luctus accumsan tortor posuere ac. Ipsum consequat nisl vel pretium lectus quam id leo.", 0)
     })
   })
 
@@ -55,8 +55,10 @@ export default function(Loremsition) {
 
   resizeThrottle(function () {
     console.log('resizing!')
-    loopContainers(function (v) {
-      v.setCutOff(window.innerHeight)
+
+    loopContainers(function (v) { 
+      v.setDropLimit(v.props.dropLimit ? window.innerHeight : false)
+      v.setCutOff(v.props.cutOff ? window.innerHeight : false)
     })
 
     // example of using the cutOffEnd method on the object's prototype.
