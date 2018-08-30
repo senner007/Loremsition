@@ -1,40 +1,31 @@
+#loremsition-vertical-1 {
+  width: 48%;
+  left: 0;
+  position: absolute;
+}
 
-  #loremsition-vertical-1  {
-  
-    width: 48%;
-    
-    left: 0;
-    position: absolute;
+#loremsition-vertical-2 {
+  width: 48%;
+  left: 50%;
+  position: absolute;
+}
 
-  }
-  #loremsition-vertical-2 {
-  
-    width:48%;
-    left: 50%;
-    position: absolute;
-
-  }
-
-  .grid-vertical {
-    
-    position: absolute;
-    width: inherit;
-
-} 
-  
+.grid-vertical {
+  position: absolute;
+  width: inherit;
+}
 
 .loremsition-vertical {
   display: block;
-  transform: translateZ(0); /* don't know if it helps */
-
+  transform: translateZ(0);
+  /* don't know if it helps */
 }
 
 .loremsition-list-vertical {
   display: block;
   z-index: 1;
-
-  transform: translateZ(0); /* don't know if it helps */
- 
+  transform: translateZ(0);
+  /* don't know if it helps */
 }
 
 .listItem {
@@ -46,8 +37,5 @@
   width: 100%;
   line-height: 19px;
   border-radius: 1px;
- box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
-
-
-
