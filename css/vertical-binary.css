@@ -56,10 +56,11 @@
   font-size: 1.2vw;
   border-radius: 1px;
   line-height: 21px;
-  color: black;
-  border-top: 2px solid DARKSLATEGRAY;
+  color: rgb(68, 68, 68);
+  border-top: 2px solid rgb(68, 68, 68);
   font-weight: bold;
   /* text-shadow: whitesmoke -1px -1px 0px; */
+
 }
 
 .listItem span {
@@ -80,6 +81,8 @@
   /* font-family: 'Fredericka the Great', cursive; */
   background-color: DARKSLATEGRAY;
   text-shadow: black -1px -1px 0px;
+
+
 }
 
 @media only screen and (max-width: 1000px) {

@@ -37,13 +37,16 @@ export default function (Loremsition) {
 
   loopContainers(function (c) {
     c.div.addEventListener('onDropTo', function (ev) {
+      
       loopContainers(function (v) {
         v.elts.forEach(function(e,i)  {
           e.querySelector('.special').innerText = romanize(i +1);
         })
       })
+      console.time('g')
        loopContainers(function(v) { v.reCalculate()})
-    })
+      console.timeEnd('g')
+      })
   })
 
   function loopContainers(fn) {
