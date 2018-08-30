@@ -43,9 +43,7 @@ export default function (Loremsition) {
           e.querySelector('.special').innerText = romanize(i +1);
         })
       })
-      console.time('g')
        loopContainers(function(v) { v.reCalculate()})
-      console.timeEnd('g')
       })
   })
 
