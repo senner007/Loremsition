@@ -1,32 +1,27 @@
-.grid-vertical {
-  display: grid;
-  grid-template-columns: 3fr 3fr;
-}
-
-/* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { 
 
   #loremsition-vertical-1  {
   
-    width: 50%;
-
+    width: 48%;
+    
     left: 0;
     position: absolute;
+
   }
   #loremsition-vertical-2 {
   
-    width:50%;
+    width:48%;
     left: 50%;
     position: absolute;
+
   }
 
   .grid-vertical {
     
     position: absolute;
     width: inherit;
+
 } 
   
-}
 
 .loremsition-vertical {
   display: block;
@@ -37,7 +32,7 @@
 .loremsition-list-vertical {
   display: block;
   z-index: 1;
-  margin: 5px;
+
   transform: translateZ(0); /* don't know if it helps */
  
 }
