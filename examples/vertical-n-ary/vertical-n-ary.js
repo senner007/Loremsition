@@ -4,8 +4,9 @@ import {
 
 export default function(Loremsition) {
 
-  var elem1 = document.getElementById('loremsition-vertical-binary-1');
-  var elem2 = document.getElementById('loremsition-vertical-binary-2');
+  var elem1 = document.getElementById('loremsition-vertical-n-ary-1');
+  var elem2 = document.getElementById('loremsition-vertical-n-ary-2');
+  var elem3 = document.getElementById('loremsition-vertical-n-ary-3');
 
   var winHeight = window.innerHeight; // recalculate windows height for cutoff on resize.
 
@@ -14,15 +15,25 @@ export default function(Loremsition) {
       isVertical: true,
       cutOff: winHeight,
       adjIds: [
-        elem2.id
+        elem2.id,
+        elem3.id
       ]
     }),
     new Loremsition(elem2, {
       isVertical: true,
+      cutOff: winHeight,
+      adjIds: [
+        elem1.id,
+        elem3.id
+      ]
+    }),
+    new Loremsition(elem3, {
+      isVertical: true,
       cutOff: false,
       dropLimit: winHeight,
       adjIds: [
-        elem1.id
+        elem1.id,
+        elem2.id
       ]
     })
   ];
