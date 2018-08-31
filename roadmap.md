@@ -4,7 +4,7 @@
 - set up css in options overwritring the css in css file
 
 0.2 - Plugin showcasing
-- Click items to delete (for showcasing)
+- Click buttons to add/delete (for showcasing)
 - support for custom animations set in options
 - method to turn all animations on/off
 - getInstances() should point to array of all instances but without prototypes (Object.assign)
@@ -17,6 +17,7 @@
 - connect vertical to horizontal
 - Allow vertical instances to be placed vertically above/under. Create example with 4 vertical instances aligned horizontally which then realigns to 2 above and 2 under in landscape mode.
 - allow events on options object
+- add example with event monitor function
 
 0.1
 - Dragging enable/disable/lock on individual items method
