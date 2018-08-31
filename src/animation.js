@@ -5,8 +5,6 @@ export {
   _scaleElems
 };
 
-
-
 function _transToZero(elt, thisInst, speed) {
 
   if (speed == undefined) { var speed = '250ms ease' }
