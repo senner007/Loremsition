@@ -14,32 +14,32 @@
 - maybe set {passive: true} as third argument on event start and event move - https://developers.google.com/web/updates/2017/01/scrolling-intervention
 - if id is not passed in options, it will get the div id or assign a number based id based on the order of instantiation(default)
 - possibly eliminate the need for having both height and width property on elt.props
+- connect vertical to horizontal
+- Allow vertical instances to be placed vertically above/under. Create example with 4 vertical instances aligned horizontally which then realigns to 2 above and 2 under in landscape mode.
+- allow events on options object
 
 0.1
-- Refactor shuffle method to scale out and in use the _scaleElems method, call cutoff method after shuffle
-- setChars function should update elt object as well, it does not work when moving to another container. should probably work in conjunction with the relayout method.
 - Dragging enable/disable/lock on individual items method
 - Improve add and remove method. eg. all or an array as parameter, allow index(number) as elt selctor in removeLiElem
 - add boolean to cutOffEnd method which prevents the function from running if the cut-off element(s) will make adjacent container fire its cutoffEnd method and thereby creating an infinite loop.
 - Assume transition support
 - Call orientationChange event in place of resize on Chrome ios
-- use native event delegation https://stackoverflow.com/questions/14174056/native-addeventlistener-with-selector-like-on-in-jquery
 - when using a single list, allow the option to constrain to a single axis - http://www.javascriptkit.com/javatutors/touchevents.shtml(bottom)
 ----------------------------------------------------------------------------------------------------------------------------
 - fix onReorder event to only show reorder on the desired instance
 - call scale method in removeLiElem
 - allow option to cutoff to specified instance
 - allow shuffle method with no parameters, otherwise should take an array of instances
-- Allow vertical instances to be placed vertically above/under. Create example with 4 vertical instances aligned horizontally which then realigns to 2 above and 2 under in landscape mode.
+
 - Validate html with w3
 - Optional sorting functionality - drag from but not reorder
 - Set initial div.id on elt
 - return elt, elts, thisInst and thisInst.newInst with onDropTo, onDropFrom callbacks
 -------------------------------------------------------------------------------------------------------------------------------
-- write guessHeight algorithm
+- write guessHeight algorithm (n-ary)
 - refactor guessHeight conditionals
 - throttle drag call on mouse/touch move
-
+- test on scrollable page
 
 
 Fixed:
