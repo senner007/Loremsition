@@ -112,43 +112,43 @@ function _shuffleArray(a) {
   }
 }
 
-function _shuffle() {
+// function _shuffle() {
 
-    var elems = [],
-        instances = arguments;  // account for n number of instances to shuffle
+//     var elems = [],
+//         instances = arguments;  // account for n number of instances to shuffle
 
 
-    for (let ii = 0; ii < instances.length; ii++) { // get the elems
+//     for (let ii = 0; ii < instances.length; ii++) { // get the elems
 
-      let n = 0;
-      while (instances[ii].elts[n] != undefined) {
-        instances[ii].elts[n].style[instances[ii].transitionPrefix] = '0ms'; // make sure elts dont animate into new position
-        elems.push(instances[ii].elts[n].innerHTML)
-        n++
-      }
+//       let n = 0;
+//       while (instances[ii].elts[n] != undefined) {
+//         instances[ii].elts[n].style[instances[ii].transitionPrefix] = '0ms'; // make sure elts dont animate into new position
+//         elems.push(instances[ii].elts[n].innerHTML)
+//         n++
+//       }
 
-    }
+//     }
 
-    _shuffleArray(elems)          // shuffle the elems
+//     _shuffleArray(elems)          // shuffle the elems
 
-      var count = 0
-      for (let ii = 0; ii < instances.length; ii++) {   // insert the elems
+//       var count = 0
+//       for (let ii = 0; ii < instances.length; ii++) {   // insert the elems
 
-          for (let n = 0; n < instances[ii].elts.length; n++) {
-            instances[ii].elts[n].innerHTML = elems[count]
-            count++;
-          }
+//           for (let n = 0; n < instances[ii].elts.length; n++) {
+//             instances[ii].elts[n].innerHTML = elems[count]
+//             count++;
+//           }
 
-      }
+//       }
 
-  this.reLayout()                             // reLayout the instances
-  this.reLayout.call(this.adjInst1)
+//   this.reLayout()                             // reLayout the instances
+//   this.reLayout.call(this.adjInst1)
 
-  return elems;
-};
+//   return elems;
+// };
 
 export {
-  _shuffle,
+  // _shuffle,
   _elemsToCutAppend,
   // setEvents,
   defaults,
