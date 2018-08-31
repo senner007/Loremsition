@@ -9,7 +9,7 @@ High performance lightweight javascript library for content layout and animated 
 - npm install
 
 ### To Run
-- npm run dev - go to localhost:1234/loremsition/vertical or localhost:1234/loremsition/horizontal
+- npm run dev - go to localhost:1234/loremsition/(horizontal-unary|vertical-binary|vertical-n-ary)
 
 ### Fix
  - If parcel complains that functions are not functions you can:
