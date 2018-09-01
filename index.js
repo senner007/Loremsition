@@ -1,5 +1,6 @@
 import Loremsition from './src/main.js'
 import './css/sortCss.css';
+
 import './examples/horizontal-unary/horizontal-unary.css';
 import './examples/vertical-binary/vertical-binary.css';
 import './examples/vertical-n-ary/vertical-n-ary.css';
@@ -22,7 +23,7 @@ import 'whatwg-fetch';
         js : import("./examples/vertical-binary/vertical-binary.js")
       }
     }
-    else if (path[2] == 'vertical-n-ary') {
+    else if (path[2] == 'vertical-n-ary' || path[2] == "" || !path[2]) {
       var assets = {
         html : import('./examples/vertical-n-ary/vertical-n-ary.html'),
         js : import("./examples/vertical-n-ary/vertical-n-ary.js")
