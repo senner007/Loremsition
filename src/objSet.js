@@ -19,6 +19,18 @@ function setEltProto (param) {
     })
 }
 
+export function _mergeObject(target) { // replaces Object.assign
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
+}
+
 export function _addToObject(elt, n, thisHeight, thisWidth, margin, thisInst, eltObj) {
     var thisElts = thisInst.elts
     thisElts[n] = elt;
@@ -90,7 +102,7 @@ export function _setInstances(thisinst, temporaryInstanceArray) {
   
             if (temporaryInstanceArray[i].id == adjInstances[n]) {
   
-                var copy = { ...temporaryInstanceArray[i] };
+                var copy = _mergeObject({}, temporaryInstanceArray[i]);
                 // delete nested adjInst object references in adjInst references
                  copy.adjCon.forEach(v =>  delete copy[v])
                  delete copy.adjCon;

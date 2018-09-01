@@ -23,7 +23,7 @@ import {
 
 import {mergeObject} from './polyfills';
 
-import { _addToObject, _getMargin, _outerHeight, _outerWidth, _setInstances, _setEltsProps} from './objSet';
+import { _addToObject, _getMargin, _outerHeight, _outerWidth, _setInstances, _setEltsProps, _mergeObject} from './objSet';
 
 export default Loremsition;
 
@@ -63,7 +63,7 @@ function Loremsition(element, options) { // Constructor function
   this.adjCon = [];
   // this.options = $.extend({}, defaults, options);
   // this.options = Object.assign({}, defaults, options);
-  this.options = mergeObject({}, defaults, options); // Object.assign alternative
+  this.options = _mergeObject({}, defaults, options); // Object.assign alternative
   this.props.cutOff = this.options.cutOff;
   delete this.options.cutOff;
   this.props.dropLimit = this.options.dropLimit;
