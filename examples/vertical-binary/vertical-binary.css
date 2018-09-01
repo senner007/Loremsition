@@ -5,19 +5,11 @@
   margin: 0 auto;
 }
 
-/* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
-  #loremsition-vertical-binary-1 {
+/* IE 9+ https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet */
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+  .loremsition-vertical-binary {
     width: 50%;
-    left: 0;
-    position: absolute;
-  }
-
-  #loremsition-vertical-binary-2 {
-    width: 50%;
-    left: 50%;
-    position: absolute;
+    float: left;
   }
 
   .grid-vertical-binary {
@@ -29,35 +21,6 @@
     right: 0;
   }
 }
-
-/* https://stackoverflow.com/questions/7364891/how-to-define-specific-css-rules-for-ie9-alone   Nasty ie9 hack - dont't beautify */
-/* https://stackoverflow.com/questions/6654423/target-ie9-only-via-css */
-@media screen and (min-width:0) and (min-resolution: .001dpcm) { 
-  :root #loremsition-vertical-binary-1 {
-    width: 50% \ ;
-    left: 0 \ ;
-    position: absolute \ ;
-    display: inline-block \ ;
-  }
-
-  :root #loremsition-vertical-binary-2 {
-    width: 50% \ ;
-    left: 50% \ ;
-    position: absolute \ ;
-    display: inline-block \ ;
-  }
-
-  :root .grid-vertical-binary {
-    position: absolute \ ;
-    width: 60% \ ;
-    margin-left: auto \ ;
-    margin-right: auto \ ;
-    left: 0 \ ;
-    right: 0 \ ;
-    display: inline-block \ ;
-  }
-  
- }
 
 .loremsition-vertical-binary {
   display: block;
@@ -113,9 +76,10 @@
 
 /* :root for ie 9 and the rest */
 @media only screen and (max-width: 1000px) {
-  :root .grid-vertical-binary { 
+  :root .grid-vertical-binary {
     width: 95%;
   }
+
   :root .listItem {
     padding: 10px;
     padding-top: 10px;

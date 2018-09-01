@@ -5,26 +5,11 @@
   margin: 0 auto;
 }
 
-/* IE 10+  https://stackoverflow.com/questions/43528940/how-to-detect-ie-and-edge-browsers-in-css*/
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
-  #loremsition-vertical-n-ary-1 {
+/* IE 9+  https://stackoverflow.com/questions/28417056/how-to-target-only-ie-any-version-within-a-stylesheet */
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+  .loremsition-vertical-n-ary {
+    float: left;
     width: 33%;
-    left: 0;
-    position: absolute;
-    
-  }
-
-  #loremsition-vertical-n-ary-2 {
-    width: 33%;
-    left: 33%;
-    position: absolute;
-  }
-
-  #loremsition-vertical-n-ary-3 {
-    width: 33%;
-    left: 66%;
-    position: absolute;
   }
 
   .grid-vertical-n-ary {
@@ -34,43 +19,8 @@
     margin-right: auto;
     left: 0;
     right: 0;
-      
   }
-  
 }
-/* https://stackoverflow.com/questions/7364891/how-to-define-specific-css-rules-for-ie9-alone  Nasty ie9 hack - dont't beautify */
-/* https://stackoverflow.com/questions/6654423/target-ie9-only-via-css */
-@media screen and (min-width:0) and (min-resolution: .001dpcm) { 
-  :root #loremsition-vertical-n-ary-1 {
-    width: 33% \ ;
-    left: 0 \ ;
-    position: absolute \ ;
-    display: inline-block \ ;
-  }
-
-  :root #loremsition-vertical-n-ary-2 {
-    width: 33% \ ;
-    left: 33% \ ;
-    position: absolute \ ;
-    display: inline-block \ ;
-  }
-
-  :root #loremsition-vertical-n-ary-3 {
-    width: 33% \ ;
-    left: 66% \ ;
-    position: absolute \ ;
-    display: inline-block \ ;
-  }
-  :root .grid-vertical-n-ary {
-    position: absolute \ ;
-    width: 60% \ ;
-    margin-left: auto \ ;
-    margin-right: auto \ ;
-    left:  0 \ ;
-    right: 0 \ ;
-    display: inline-block \ ;
-  }
- }
 
 .loremsition-vertical-n-ary {
   display: block;
@@ -88,7 +38,7 @@
   position: relative;
 }
 
-.listItem {
+.loremsition-list-vertical-n-ary .listItem {
   position: absolute;
   list-style: none;
   padding: 10px;
@@ -102,10 +52,9 @@
   border-top: 2px solid rgb(68, 68, 68);
   font-weight: bold;
   /* text-shadow: whitesmoke -1px -1px 0px; */
-
 }
 
-.listItem span {
+.loremsition-list-vertical-n-ary .listItem span {
   float: left;
   background-repeat: repeat;
   margin-right: 6px;
@@ -127,7 +76,7 @@
 
 /* :root for ie 9 and the rest */
 @media only screen and (max-width: 1000px) {
-  :root .grid-vertical-n-ary { 
+  :root .grid-vertical-n-ary {
     width: 95%;
   }
 

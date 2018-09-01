@@ -1,6 +1,6 @@
 import {
   resizeThrottle
-} from '..//utils/utils_helpers'
+} from '../utils/utils_helpers'
 
 export default function(Loremsition) {
 
