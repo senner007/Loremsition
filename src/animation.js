@@ -10,10 +10,14 @@ function _transToZero(elt, thisInst, speed) {
   if (speed == undefined) { var speed = '250ms ease' }
   // calling computed style makes ios mobile transition smoother
   // TODO : no computedStyle on instance crossing horizontal
- window.getComputedStyle(elt)[thisInst.transformPrefix] 
+ window.getComputedStyle(elt)[thisInst.transformPrefix];
+
+//  elt.style.cssText = `${thisInst.transitionPrefix}: ${speed};
+//                       ${thisInst.transformPrefix}: ${thisInst.ifGpu};`
+ 
  elt.style[thisInst.transitionPrefix] = speed;
  
-  elt.style[thisInst.transformPrefix] = thisInst.ifGpu // translateZ doesn't work for ie9
+  elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
 
 };
 
@@ -45,32 +49,35 @@ function _animateBack(elt, thisInst) {
 
 // TODO : Refactor into cssText line
   if (diff > 2) {
-    elt.style.width = thisInst.newInst.props.divWidth + 'px'
-    elt.style[thisInst.transitionPrefix] = 'width 200ms';
+
+    elt.style.cssText = `width: ${thisInst.newInst.props.divWidth}px; 
+                        ${thisInst.transitionPrefix}: width 200ms;`
+
+    // elt.style.width = thisInst.newInst.props.divWidth + 'px'
+    // elt.style[thisInst.transitionPrefix] = 'width 200ms';
   }
 
-  elt.style.top = thisTop  + 'px';
-  elt.style.left = thisLeft + 'px';
-  elt.style[thisInst.transformPrefix] = 'translate3d(' + ((elt.props.currentPos.left - thisLeft) - eltMarginLeft) + 'px,' + (elt.props.currentPos.top - thisTop - eltMarginTop ) + 'px,0px)';
+  elt.style.cssText = `top: ${thisTop}px; 
+                      left: ${thisLeft}px;
+                      ${thisInst.transformPrefix}: translate3d(${((elt.props.currentPos.left - thisLeft) - eltMarginLeft)}px, ${(elt.props.currentPos.top - thisTop - eltMarginTop )}px,0px)`; 
+
+  // elt.style.top = thisTop  + 'px';
+  // elt.style.left = thisLeft + 'px';
+  // elt.style[thisInst.transformPrefix] = 'translate3d(' + ((elt.props.currentPos.left - thisLeft) - eltMarginLeft) + 'px,' + (elt.props.currentPos.top - thisTop - eltMarginTop ) + 'px,0px)';
 
 };
 
 function _scaleElems(elems, thisInst) {
-  if(!thisInst.transSupport) return; // for IE - will not scale out and in
- if (elems == undefined) { return; }
- var elems = elems, // elems is an array of elements to scale in after they have been added
-    thisInst = thisInst;
+  if (!thisInst.transSupport || !elems || elems.length === 0) return; // for IE - will not scale out and in
 
   scaleElems('off');
 
-  if (thisInst.transSupport && elems.length != 0) { // transition elements  but only if if there are any
+  window.getComputedStyle(elems[0])[thisInst.transformPrefix]; // force reflow
 
-     setTimeout(function() {scaleElems('on');}, 1);
-      // setTimeout is need because transform properties need time to be set.
-  }
+  scaleElems('on');;     
+
   function scaleElems(trigger) {
-    for (var i = 0; i < elems.length; i++) {
-      // Refactor into cssText line !!!!!!!!!!!!!!!
+    for (let i = 0; i < elems.length; i++) {
       elems[i].style[thisInst.transitionPrefix] = trigger == 'on' ? '500ms' : '0ms';
       elems[i].style[thisInst.transformPrefix] = trigger == 'on' ? 'scale(1,1)' : 'scale(0,0)';
     }
