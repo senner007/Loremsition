@@ -21,7 +21,7 @@ import {
     eltsReorder
 } from "./eltsReorder.js";
 
-import {mergeObject} from './polyfills';
+import './polyfills';
 
 import { _addToObject, _getMargin, _outerHeight, _outerWidth, _setInstances, _setEltsProps, _mergeObject} from './objSet';
 
