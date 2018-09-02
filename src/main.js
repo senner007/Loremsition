@@ -1,7 +1,6 @@
 import {
   // _shuffle,
   // setEvents,
-  defaults,
   transSupport,
   transitionPrefix,
   transformPrefix,
@@ -36,14 +35,20 @@ function jsOffset(el) { // replaces jquery offset
 }
 
 function _setUlSize(size, thisInst) {
-  var style = thisInst.ul.style;
-  if (thisInst.options.isVertical) { style.height = size + 'px';} 
-  else {  style.width = size + 'px'; }
-
+  thisInst.ul.style[thisInst.options.isVertical ? 'height' : 'width'] = size + 'px';
   thisInst.props.ulSize = size;
 }
 
 var temporaryInstanceArray = [];
+
+var defaults = {
+  isVertical: false,
+  cutOff: false,
+  dropLimit: false,
+  adjIds : []
+
+  // layoutComplete: function() { }
+}
 
 function Loremsition(element, options) { // Constructor function
   // window.temporaryInstanceArray =  window.temporaryInstanceArray || [];
@@ -68,7 +73,7 @@ function Loremsition(element, options) { // Constructor function
   delete this.options.cutOff;
   this.props.dropLimit = this.options.dropLimit;
   delete this.options.dropLimit;
-  this.ul.style[transformPrefix] = 'translate3d(0px,0px,0px)';
+  this.ul.style[transformPrefix] = 'translate3d(0px,0px,0px)'; // TODO : needed?
   this.props.ulSize = 0;
   this.transitionPrefix = transitionPrefix;
   this.transformPrefix = transformPrefix;
@@ -170,8 +175,7 @@ function _curryLi(thisInst, liText, setPos, opacity = 1) {
   var isVertical = thisInst.options.isVertical;
   var thisElts = thisInst.elts;
   var liPosition = Math.min(Math.max(parseInt(setPos), 0), thisElts.length); // this is to make sure that the insert position is not greater than the number of elts present.
-  var n = thisElts.length,
-      o = thisInst.options;
+  var n = thisElts.length;
 
   var eltObj = {
     'left': liPosition > 0 ? thisElts[liPosition - 1].props.pos.left + thisElts[liPosition - 1].props.completeWidth : 0,
@@ -213,7 +217,7 @@ function _curryLi(thisInst, liText, setPos, opacity = 1) {
   }
 }
 
-
+// TODO : shouldn't be on prototype
 Loremsition.prototype._addLiToObject = function (liText, setPos = this.elts.length, width, height) {
 
   var isVertical = this.options.isVertical;
@@ -262,6 +266,7 @@ Loremsition.prototype.removeLiElem = function(elt, transition, callBack, setUl =
 
     elt.addEventListener('transitionend', _animateCallback);
     if (!this.transSupport) _animateCallback();
+
     elt.style[this.transformPrefix] = 'scale(0.5,0.5)';
     elt.style.opacity = '0';
     elt.style[this.transitionPrefix] = '250ms';

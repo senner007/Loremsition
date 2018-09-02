@@ -10,30 +10,24 @@ function _transToZero(elt, thisInst, speed) {
   if (speed == undefined) { var speed = '250ms ease' }
   // calling computed style makes ios mobile transition smoother
   // TODO : no computedStyle on instance crossing horizontal
- window.getComputedStyle(elt)[thisInst.transformPrefix];
-
-//  elt.style.cssText = `${thisInst.transitionPrefix}: ${speed};
-//                       ${thisInst.transformPrefix}: ${thisInst.ifGpu};`
- 
- elt.style[thisInst.transitionPrefix] = speed;
- 
+  window.getComputedStyle(elt)[thisInst.transformPrefix];
+  elt.style[thisInst.transitionPrefix] = speed; 
   elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
 
 };
 
 function _animateBack(elt, thisInst) {
-  var o = thisInst.options;
+  var isVertical = thisInst.options.isVertical;
 
-  var eltMarginLeft = o.isVertical ? 0 : elt.props.margin; // get margin for horizontal
-  var eltMarginTop = o.isVertical ? elt.props.margin : 0 ; // get margin for vertical 
+  var eltMarginLeft = isVertical ? 0 : elt.props.margin; // get margin for horizontal
+  var eltMarginTop = isVertical ? elt.props.margin : 0 ; // get margin for vertical 
 
   if (thisInst.crossFlag && thisInst.newInst) {
 
-    if (o.isVertical) {
-      var thisTop = thisInst.added.props.pos.top ;
+    if (isVertical) {
+      var thisTop = thisInst.added.props.pos.top;
       var thisLeft = thisInst.newInst.distanceTo;
-      var diff = Math.abs ( thisInst.props.divWidth - thisInst.newInst.props.divWidth)
-
+      var diff = Math.abs ( thisInst.props.divWidth - thisInst.newInst.props.divWidth);
 
     } else {
       var thisTop = thisInst.newInst.distanceTo;
@@ -47,7 +41,6 @@ function _animateBack(elt, thisInst) {
 
   }
 
-// TODO : Refactor into cssText line
   if (diff > 2) {
 
     elt.style.cssText = `width: ${thisInst.newInst.props.divWidth}px; 

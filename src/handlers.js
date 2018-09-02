@@ -1,7 +1,11 @@
 import {
-  _onDrag,
-  _onStop
-} from "./eltsReorder.js"
+  onDrag
+} from "./eltStart.js"
+
+import {
+  onStop
+} from "./eltStop.js"
+
 export {
   _addEventHandlers
 }
@@ -16,25 +20,23 @@ function _addEventHandlers(thisInst) {
 
   var isPointer = (window.PointerEvent);
 
+  var eStart = isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousedown',
+      eMove = isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
+      eEnd = isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup';
+
+  var ul = thisInst.ul,
+      elt,
+      dontTouch = false,
+      hasMoved;    
 
   var targetOffsetY,
-    targetOffsetX,
-    newDx,
-    newDy,
-    thisInst = thisInst,
-    transformPrefix = thisInst.transformPrefix,
-    transitionPrefix = thisInst.transitionPrefix,
-    ul = thisInst.ul,
-    elt,
-    eStart = isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousedown',
-    eMove = isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
-    eEnd = isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
-    dontTouch = false,
-    startX,
-    startY,
-    hasMoved,
-    ieStartX,
-    ieStartY
+      targetOffsetX,
+      newDx,
+      newDy,
+      startX,
+      startY,
+      ieStartX,
+      ieStartY;
 
   document.onselectstart = function() { return false; } // prevent text selection in ie9
 
@@ -44,17 +46,16 @@ function _addEventHandlers(thisInst) {
 
     if (e.target.localName == 'ul' || thisInst.props.locked == true || thisInst.props.tempLock == true || e.target.locked == true || e.target.localName == 'button') return;
     elt = e.target
+
     if (e.target.localName == 'span' || e.target.localName == 'div') {
       elt = e.target.offsetParent;
     }
-
 
     e.preventDefault();
     dontTouch = true;
 
     elt.nStart = elt.n
-    elt.style[transitionPrefix] = '0s';
-
+    elt.style[thisInst.transitionPrefix] = '0s';
 
     if (document.documentMode || /Edge/.test(navigator.userAgent)) { // if IE || Edge
 
@@ -68,7 +69,7 @@ function _addEventHandlers(thisInst) {
 
     elt.startDate = new Date();
 
-    if( !thisInst.transSupport) {
+    if(!thisInst.transSupport) {
       if (!parseInt(elt.style.left)) elt.style.left = '0px';
       if (!parseInt(elt.style.top)) elt.style.top = '0px';
       ieStartX = e.pageX - parseInt(elt.style.left);
@@ -79,13 +80,11 @@ function _addEventHandlers(thisInst) {
     targetOffsetY = elt.props.pos.top + (thisInst.options.isVertical ? elt.props.margin : 0);
     targetOffsetX = elt.props.pos.left + (thisInst.options.isVertical ? 0 : elt.props.margin);
 
-
     ul.removeEventListener(eStart, pointerstart);
     window.addEventListener(eEnd, pointerupFunction); // refactor to add the once: true object to similar to jquery once. Wait for browser compatibility
     window.addEventListener(eMove, pointermoveFunction);
 
   };
-
 
 
   function pointermoveFunction(e) {
@@ -95,7 +94,7 @@ function _addEventHandlers(thisInst) {
     }
 
     e.preventDefault();
-    hasMoved = true; // hasMoved is a flag to clicking items without moving them
+    hasMoved = true; // hasMoved is a flag for clicking items without moving them
 
     newDx = e.pageX - startX;
     newDy = e.pageY - startY;
@@ -105,15 +104,13 @@ function _addEventHandlers(thisInst) {
       elt.style.left = e.pageX  - ieStartX + 'px';
     }
     else {
-       elt.style[transformPrefix] = 'translate3d(' + newDx + 'px, ' + newDy + 'px, 0px) translateZ(0)';
+       elt.style[thisInst.transformPrefix] = 'translate3d(' + newDx + 'px, ' + newDy + 'px, 0px) translateZ(0)';
     }
    
-
-
     elt.props.currentPos.top = targetOffsetY + newDy;
     elt.props.currentPos.left = targetOffsetX + newDx;
 
-    _onDrag(elt, thisInst);
+    onDrag(elt, thisInst);
 
   };
 
@@ -122,22 +119,13 @@ function _addEventHandlers(thisInst) {
     ul.addEventListener(eStart, pointerstart);
 
     if (hasMoved == true) {
-
       hasMoved = false;
-      clearClass();
-      elt.style[transformPrefix] = 'translateZ(0) translate3d(' + 0 + 'px, ' + 0 + 'px, 0px)';
-
-      if (!elt) {
-        return;
-      }
-      _onStop(elt, thisInst);
-    } else { // if it hasn't moved
-      clearClass();
+      if (!elt) return;
+      elt.style[thisInst.transformPrefix] = 'translateZ(0) translate3d(0px, 0px, 0px)';
+      onStop(elt, thisInst);
     }
 
-    function clearClass() {
-      dontTouch = false;
-    };
+    dontTouch = false;
     window.removeEventListener(eMove, pointermoveFunction);
     window.removeEventListener(eEnd, pointerupFunction);
 

@@ -30,18 +30,6 @@ var testElement = document.createElement('div');
 var transitionPrefix = "webkitTransition" in testElement.style ? "-webkit-transition" : "transition";
 var transformPrefix = "webkitTransform" in testElement.style ? "-webkit-transform" : "-ms-transform" in testElement.style && transSupport == false ? "-ms-transform" : "transform"; //if ie9
 
-
-var defaults = {
-  isVertical: false,
-  setChars: false,
-  cutOff: false,
-  dropLimit: false,
-  hasAdjacent: true,
-  adjIds : []
-
-  // layoutComplete: function() { }
-}
-
 function _findNext(thisInst, adjInst) {   // find instance by offset which is after the instance with elements to cut
   var plane = thisInst.options.isVertical ? 'left' : 'top';
   var next;
@@ -56,7 +44,7 @@ function _findNext(thisInst, adjInst) {   // find instance by offset which is af
   return next;
 }
 
-function getFirstInstance(thisInst) {
+function _getFirstInstance(thisInst) {
   var plane = thisInst.options.isVertical ? 'left' : 'top';
   var lowest = thisInst;
 
@@ -87,7 +75,7 @@ function _elemsToCutAppend(thisInst, adjInst) {
   }
   var next = _findNext(thisInst, adjInst);
 
-  var instToAddTo = next != undefined ? next : getFirstInstance(thisInst); // if drop to last instance: cutoff to first instance
+  var instToAddTo = next != undefined ? next : _getFirstInstance(thisInst); // if drop to last instance: cutoff to first instance
 
   if (instToAddTo.props.locked) return;
   
@@ -150,8 +138,6 @@ function _elemsToCutAppend(thisInst, adjInst) {
 export {
   // _shuffle,
   _elemsToCutAppend,
-  // setEvents,
-  defaults,
   transSupport,
   transitionPrefix,
   transformPrefix,
