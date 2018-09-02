@@ -1,82 +1,18 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Loremsition</title>
-	<link rel="stylesheet" href="prodSortCss.css" title="ios">
-	<link rel="stylesheet" href="prodVertical.css" title="ios">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
 	<!-- 	to prevent zoom on drag move to edge on ipad -->
 </head>
-<body>
-	<div class="container">
-		<div class="grid-vertical">
-			<div class='loremsition-vertical' id='loremsition-vertical-1'>
-				<ul class='loremsition-list-vertical'>
-				  <li class='listItem'>Lorizzle break it down dolizzle sit amizzle, get down get down adipiscing break yo neck, yall. Nullizzle cool velit, aliquet volutpizzle, suscipit quis, dope vizzle, gangster. Pellentesque daahng dawg pizzle. Sizzle eros. Dang sheezy dolor dapibizzle we gonna chung tempizzle yo mamma.</li>
-				  <li class='listItem'>Maurizzle fo shizzle my nizzle nibh izzle turpizzle. Pimpin' izzle things. Crazy gangsta rhoncizzle nisi. Crackalackin away bow wow wow platea dictumst. Yo mamma dapibizzle. The bizzle tellizzle urna, pretizzle eu, mattis yo, eleifend vitae, sizzle. Away suscipizzle.</li>
-				  <li class='listItem'>Sheezy semper velit my shizz uhuh ... yih!.</li>
-				</ul>
-			</div>
-				
-			<div class='loremsition-vertical' id='loremsition-vertical-2'>
-				<ul class='loremsition-list-vertical'>
-					<li class='listItem'>Phat shiznit lorem, pulvinar izzle, i saw beyonces tizzles and my pizzle went crizzle egizzle, vehicula gangster, dizzle. Etizzle ma nizzle leo a sem hendrerizzle mattizzle. Gangster interdizzle pot break yo neck, yall own yo' commodo ullamcorper. Etizzle lobortis fermentum shizznit. Morbi odio. Shizznit quizzle metizzle dang dolor mah nizzle auctizzle. Integer sagittizzle dang urna.</li>
-					<li class='listItem'>The bizzle sapizzle gangster, ultrices nizzle, accumsizzle yo mamma, shiznit quis, pede. Dizzle nizzle libero. Etiam nizzle ornare ante. Shiz fo shizzle. Vestibulizzle izzle rizzle varius nibh we gonna chung commodo. </li>
-					<li class='listItem'>Lorem fo dolor sit amet, consectetuer crackalackin elizzle. Sizzle izzle gangsta. Quisque gangsta sem, sodalizzle et, stuff a, eleifend a, pimpin'.</li>
-				</ul>
-			</div>	
-		</div>
-	</div>
 
-    <script src="loremsition.js"></script>
-    
-    <script>
-        (function vertical (Loremsition) {
-        
-            var elem1 = document.getElementById('loremsition-vertical-1');
-            var elem2 = document.getElementById('loremsition-vertical-2');
-            var winHeight = window.innerHeight - 20; // recalculate windows height for cutoff on resize.
+<body unselectable="on" style="user-select: none;">
 
-            function loopContainers(fn) {
-                containers.forEach(fn)
-            }
+	<div class="container" style="visibility: hidden;"></div>
 
-            var containers = [
-                new Loremsition(elem1, {
-                isVertical: true,
-                cutOff: winHeight,
-                adjIds: [
-                    elem2.id
-                ]
-                }),
-                new Loremsition(elem2, {
-                    isVertical: true,
-                    cutOff: winHeight,
-                    adjIds : [
-                        elem1.id
-                    ]
-                })
-            ]
+	<!-- <script src="index.js"></script> -->
+<script type="text/javascript" src="examples.js"></script></body>
 
-            loopContainers(function(v) {
-                v.init();
-            })
-           
-            containers[0].removeLiElem(containers[0].elts[0], true, function (){ 
-                containers[1].addLiElem("This element was added after the remove animate event", 1, {elt:true,elts:true})
-                loopContainers(function(v) {v.reCalculate()})
-            })
-
-            window.addEventListener('resize', function () {
-                loopContainers(function(v) {v.cutOff = window.innerHeight - 20})
-                loopContainers(function(v) {v.cutOffEnd()})
-                loopContainers(function(v) {v.reLayout()})
-            });
-          
-
-        }(Loremsition.default));
-
-    </script>
-</body>
 </html>
