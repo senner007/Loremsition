@@ -1,22 +1,19 @@
 # Loremsition
 High performance lightweight javascript library for content layout and animated rearrangement
 
-[Vertical demo](https://www.nielshtg.dk/loremsition/vertical) 
-[Horizontal demo](https://www.nielshtg.dk/loremsition/horizontal) 
+- [Vertical-binary demo](https://www.nielshtg.dk/loremsition/vertical-binary) 
+- [Vertical-n-ary demo](https://www.nielshtg.dk/loremsition/vertical-n-ary) 
+- [Horizontal-unary demo](https://www.nielshtg.dk/loremsition/horizontal-unary)
+- [Horizontal-binary demo](https://www.nielshtg.dk/loremsition/horizontal-binary)  
 
 
 ### Install dependencies:
 - npm install
 
 ### To Run
-- npm run dev - go to localhost:1234/loremsition/(horizontal-unary|vertical-binary|vertical-n-ary)
+- npm run dev - go to localhost:8080/(horizontal-unary|horizontal-binary|vertical-binary|vertical-n-ary)
 
-### Fix
- - If parcel complains that functions are not functions you can:
- - 1. remove the cache dir, or
- - 2. repeat the install process
-
- ### To build (loremsition.js)
+ ### To build (prod/library/loremsition.js)
 - npm run build
 
  ### Browser support:
@@ -25,8 +22,8 @@ High performance lightweight javascript library for content layout and animated 
   - Firefox
   - Edge
 
- ### Production use setup example:
-  - see prod folder
+ ### Quick setyp:
+  - see basicSetup folder
 
 ### Dependencies: 
  - none

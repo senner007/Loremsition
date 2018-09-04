@@ -12,6 +12,7 @@ module.exports = {
         contentBase: './'
    },
   output: {
+    library: 'Loremsition',
     path: path.resolve(__dirname, './prod'),
     filename: '[name].js',
   },
