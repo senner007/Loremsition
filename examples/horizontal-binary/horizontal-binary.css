@@ -1,0 +1,78 @@
+.grid-horizontal {
+  display: grid;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding-top: 5%;
+  padding-bottom: 3%;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#loremsition-horizontal-1 {
+  position: relative;
+  height: 100px;
+}
+
+#loremsition-horizontal-2 {
+  position: relative;
+  height: 100px;
+}
+
+.loremsition-list-horizontal {
+  width: inherit;
+  position: relative;
+  display: block;
+  list-style-type: none;
+  z-index: 1;
+}
+
+.listItem-horizontal {
+  position: absolute;
+  height: 70px;
+  display: inline-block;
+  border: 1px solid rgb(68, 68, 68);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  margin-right: 4px;
+}
+
+.listItem-horizontal span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: left;
+  font-size: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+  color: GAINSBORO;
+  font-weight: bold;
+  /* font-family: 'Fredericka the Great', cursive; */
+  background-color: DARKSLATEGRAY;
+}
+
+li .inner-div {
+  height: 100%;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 2vw;
+  line-height: 50px;
+  padding-left: 40px;
+  padding-right: 20px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  li .inner-div {
+    font-size: 3vw;
+    padding-left: 15px;
+    padding-right: 10px;
+  }
+}
