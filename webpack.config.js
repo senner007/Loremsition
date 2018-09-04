@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
+const CleanWebpackPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
   entry: {
@@ -65,6 +66,7 @@ module.exports = {
       template : "./index.html",
       chunks: ['examples'],
       filename: 'index.html'
-    })
+    }),
+    new CleanWebpackPlugin()
   ]
 };
