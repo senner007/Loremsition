@@ -64,9 +64,11 @@ export default function (Loremsition) {
     })
 
     var largestUl = Math.max(containers[0].props.ulSize, containers[1].props.ulSize)
-    containers[0].setCutOff(largestUl);
-    grid.style.width = largestUl + 'px';
-    containers[1].props.dropLimit = largestUl;
+    var size = largestUl * 1.1;
+    
+    grid.style.width = size + 'px';
+    containers[0].setCutOff(size);
+    containers[1].props.dropLimit = size;
 
   })
 
