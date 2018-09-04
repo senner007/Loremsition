@@ -28,10 +28,12 @@ export default function (Loremsition) {
 
   containers[0].div.addEventListener('onLayoutAll', function () {
 
-    containers[0].setCutOff(containers[0].props.ulSize)
+    var size = (containers[0].props.ulSize + containers[1].props.ulSize)/2 * 1.3;
 
-    grid.style.width = containers[0].props.ulSize + 'px';
-    containers[1].props.dropLimit = containers[0].props.ulSize;
+    containers[0].setCutOff(size)
+
+    grid.style.width = size + 'px';
+    containers[1].props.dropLimit = size;
 
     (function () {
       var i = 1
@@ -63,8 +65,7 @@ export default function (Loremsition) {
       v.reLayout()
     })
 
-    var largestUl = Math.max(containers[0].props.ulSize, containers[1].props.ulSize)
-    var size = largestUl * 1.1;
+    var size = (containers[0].props.ulSize + containers[1].props.ulSize)/2 * 1.3;
     
     grid.style.width = size + 'px';
     containers[0].setCutOff(size);
