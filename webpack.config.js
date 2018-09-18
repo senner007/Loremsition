@@ -9,8 +9,9 @@ module.exports = {
   },
   mode: "production",
   devServer: {
+    host: '0.0.0.0',
     historyApiFallback: true,
-        contentBase: './'
+    contentBase: './'
    },
   output: {
     library: 'Loremsition',
