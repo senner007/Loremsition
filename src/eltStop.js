@@ -84,7 +84,7 @@ export function onStop(elt, thisInst) { // Stop
   
       }
     }
-  
+    
     _animateBack(elt, thisInst);
     _transToZero(elt, thisInst, speed, false);
   

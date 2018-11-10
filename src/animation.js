@@ -7,7 +7,7 @@ export {
 
 
 
-function _transToZero(elt, thisInst, speed) {
+function _transToZero(elt, thisInst, speed, reqFrame = true) {
 
   if (speed == undefined) { var speed = '250ms ease' }
 
@@ -19,9 +19,17 @@ function _transToZero(elt, thisInst, speed) {
     elt.style[thisInst.transitionPrefix] = speed; 
     return;
   }
+  // TODO : Please fix bad coding!
+  if (!reqFrame) {
+    window.getComputedStyle(elt)[thisInst.transformPrefix];
+    elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
+    elt.style[thisInst.transitionPrefix] = speed; 
+    return;
+  }
 
   // Solution 2:
   requestAnimationFrame(() => {
+  
     elt.style[thisInst.transitionPrefix] = speed; 
     elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
   })
@@ -29,13 +37,14 @@ function _transToZero(elt, thisInst, speed) {
 };
 
 function _animateBack(elt, thisInst) {
+  
   var isVertical = thisInst.options.isVertical;
 
   var eltMarginLeft = isVertical ? 0 : elt.props.margin; // get margin for horizontal
   var eltMarginTop = isVertical ? elt.props.margin : 0 ; // get margin for vertical 
 
   if (thisInst.crossFlag && thisInst.newInst) {
-
+    console.log('fdfd')
     if (isVertical) {
       var thisTop = thisInst.added.props.pos.top;
       var thisLeft = thisInst.newInst.distanceTo;
