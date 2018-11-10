@@ -1,4 +1,4 @@
-### Changelog:
+### Features:
 - List items in vertical or horizontal layout
 - Hardware accelerated Animations
 - Cross-dragging between list containers
@@ -16,11 +16,11 @@
 - Dragging with touch, mouse or pointer
 - Lock/unlock methods which prevents dragging to and from instance
 - The crossDistance method. The crossing distance to the adjacent container
-- Shuffle method
+<!-- - Shuffle method -->
 - onReorder callback
 - Allow for nested elements in list items - [span,button]
 - Allows dragging/dropping between n numnber of instances
 - Allow individual width of instance container in vertical mode.
 - Use css grid to position containers or set to absolute or percentage values;
-- Ie 10+ support
-- preliminary ie9 support (without animations)
+- ie9+ support (ie9 without animations)
+- Smooth animations on mobile using requestAnimationFrame
