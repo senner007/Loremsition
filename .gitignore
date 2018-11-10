@@ -13,6 +13,7 @@ lib
 !test/**/node_modules
 .vscode/
 .idea/
+_prod-backup/
 test/integration/**/target
 test/integration/**/Cargo.lock
 # Logs
