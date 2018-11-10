@@ -108,12 +108,20 @@ export const eltsReorder = {
     //  elem.style[thisInst.transitionPrefix] = '0s';
     //  elem.style[plane] = elem.pos[plane] + 'px';
     //  elem.style[thisInst.transformPrefix] = isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
+    function setAnimate() {
+      var stringCss = isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
+      elem.style.cssText = thisInst.transitionPrefix + ":0s;" + plane + ":" + elem.props.pos[plane] + "px;" + thisInst.transformPrefix + ':' + stringCss;
+    }
 
-
-    // this replaces the above for performance
-    var stringCss = isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
-    elem.style.cssText = thisInst.transitionPrefix + ":0s;" + plane + ":" + elem.props.pos[plane] + "px;" + thisInst.transformPrefix + ':' + stringCss;
-
+    // requestanimationFrame is creates jank when vertical instance crossing - WHY!
+    if (isVertical) {
+      setAnimate()
+    } else {
+      //IE9
+      if (!thisInst.transSupport) setAnimate()
+      else requestAnimationFrame(setAnimate)  
+    }
+  
     _transToZero(elem, thisInst);
   },
 }

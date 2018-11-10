@@ -5,15 +5,27 @@ export {
   _scaleElems
 };
 
+
+
 function _transToZero(elt, thisInst, speed) {
 
   if (speed == undefined) { var speed = '250ms ease' }
-  // calling computed style makes ios mobile transition smoother
-  // TODO : no computedStyle on instance crossing horizontal
-  window.getComputedStyle(elt)[thisInst.transformPrefix];
-  elt.style[thisInst.transitionPrefix] = speed; 
-  elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
 
+  // IE 9
+  if (!thisInst.transSupport) { 
+  // Solution 1:
+    window.getComputedStyle(elt)[thisInst.transformPrefix];
+    elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
+    elt.style[thisInst.transitionPrefix] = speed; 
+    return;
+  }
+
+  // Solution 2:
+  requestAnimationFrame(() => {
+    elt.style[thisInst.transitionPrefix] = speed; 
+    elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
+  })
+  
 };
 
 function _animateBack(elt, thisInst) {
