@@ -41,6 +41,7 @@
 - refactor guessHeight conditionals
 - throttle drag call on mouse/touch move
 - test on scrollable page
+- implement cutOff cascade logic - only cutOff if next is below dropLimit
 
 
 Fixed:
