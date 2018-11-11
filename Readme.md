@@ -26,6 +26,7 @@ Optimized for mobile devices.
   - Edge
   - Safari IOS
   - Chrome IOS
+  - Chrome Android? (should work)
 
  ### Quick setyp:
   - see basicSetup folder
