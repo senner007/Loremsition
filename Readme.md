@@ -5,7 +5,8 @@ Optimized for Mobile devices
 - [Vertical-binary demo](https://www.nielshtg.dk/loremsition/vertical-binary) 
 - [Vertical-n-ary demo](https://www.nielshtg.dk/loremsition/vertical-n-ary) 
 - [Horizontal-unary demo](https://www.nielshtg.dk/loremsition/horizontal-unary)
-- [Horizontal-binary demo](https://www.nielshtg.dk/loremsition/horizontal-binary)  
+- [Horizontal-binary demo](https://www.nielshtg.dk/loremsition/horizontal-binary)
+- [Horizontal-n-ary demo](https://www.nielshtg.dk/loremsition/horizontal-n-ary)  
 
 
 ### Install dependencies:
