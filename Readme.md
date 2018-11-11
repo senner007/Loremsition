@@ -1,6 +1,7 @@
 # Loremsition
-High performance lightweight javascript library for content layout and animated rearrangement.
-Optimized for Mobile devices
+High performance lightweight javascript library for sortable content layout and animated rearrangement.
+
+Optimized for mobile devices.
 
 - [Vertical-binary demo](https://www.nielshtg.dk/loremsition/vertical-binary) 
 - [Vertical-n-ary demo](https://www.nielshtg.dk/loremsition/vertical-n-ary) 
