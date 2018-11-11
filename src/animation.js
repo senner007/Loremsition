@@ -20,19 +20,25 @@ function _transToZero(elt, thisInst, speed, reqFrame = true) {
     return;
   }
   // TODO : Please fix bad coding!
+  // double RAF in plce of reflow - Test
   if (!reqFrame) {
-    window.getComputedStyle(elt)[thisInst.transformPrefix];
-    elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
-    elt.style[thisInst.transitionPrefix] = speed; 
+    requestAnimationFrame(() => {
+      setInRAF();
+    })
+    // window.getComputedStyle(elt)[thisInst.transformPrefix];
+    // elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
+    // elt.style[thisInst.transitionPrefix] = speed; 
     return;
   }
-
+  setInRAF();
   // Solution 2:
-  requestAnimationFrame(() => {
+  function setInRAF () {
+    requestAnimationFrame(() => {
+      elt.style[thisInst.transitionPrefix] = speed; 
+      elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
+    })
+  }
   
-    elt.style[thisInst.transitionPrefix] = speed; 
-    elt.style[thisInst.transformPrefix] = thisInst.ifGpu; // translateZ doesn't work for ie9
-  })
   
 };
 
