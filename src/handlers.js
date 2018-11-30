@@ -44,11 +44,13 @@ function _addEventHandlers(thisInst) {
 
   function pointerstart(e) {
 
-    
+    // TODO : should handle any scenario. Make sure only Loremsition lis are selected
 
     if (e.target.localName == 'ul' || thisInst.props.locked == true || thisInst.props.tempLock == true  || e.target.localName == 'button') return;
     
     elt = e.target
+
+    // TODO : should handle any scenario and not just span/div
 
     if (e.target.localName == 'span' || e.target.localName == 'div') {
       elt = e.target.offsetParent;

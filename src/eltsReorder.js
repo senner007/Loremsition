@@ -25,8 +25,11 @@ export const onTrigger = { //These will trigger when the elt is crossing over to
     // if new div width is not same - set to undefined if in vertical
     
     var width =  elt.props.completeWidth
+
+    // TODO : should not be hardcoded as the number 2
+
     var height =  diff < 2  ? elt.props.completeHeight: isVertical ? undefined : elt.props.completeHeight;
-  
+   
     thisInst.added = thisInst._addLiToObject.call(thisInst.newInst, elt.innerHTML, insertPos, width, height);
 
   },
@@ -108,12 +111,14 @@ export const eltsReorder = {
     //  elem.style[thisInst.transitionPrefix] = '0s';
     //  elem.style[plane] = elem.pos[plane] + 'px';
     //  elem.style[thisInst.transformPrefix] = isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
+    
+    // TODO: avoid setting the top/left(plane) in eltsAnimate causing paint - avoid tranzToZero func
     function setAnimate() {
       var stringCss = isVertical ? 'translate3d(0px,' + eltDimension + 'px, 0px)' : 'translate3d(' + eltDimension + 'px, 0px, 0px)';
       elem.style.cssText = thisInst.transitionPrefix + ":0s;" + plane + ":" + elem.props.pos[plane] + "px;" + thisInst.transformPrefix + ':' + stringCss;
     }
 
-    // requestanimationFrame is creates jank when vertical instance crossing - WHY!
+    // TODO :requestanimationFrame creates jank when vertical instance crossing - WHY!
     if (isVertical) {
       setAnimate()
     } else {

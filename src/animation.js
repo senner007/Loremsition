@@ -50,7 +50,7 @@ function _animateBack(elt, thisInst) {
   var eltMarginTop = isVertical ? elt.props.margin : 0 ; // get margin for vertical 
 
   if (thisInst.crossFlag && thisInst.newInst) {
-    console.log('fdfd')
+ 
     if (isVertical) {
       var thisTop = thisInst.added.props.pos.top;
       var thisLeft = thisInst.newInst.distanceTo;

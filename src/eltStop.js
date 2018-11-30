@@ -52,6 +52,7 @@ export function onStop(elt, thisInst) { // Stop
         thisInst.added.style.opacity = 1
         thisInst.options.isVertical ? thisInst.added.style.top = thisInst.added.props.pos.top + 'px' : thisInst.added.style.left = thisInst.added.props.pos.left + 'px';
         appendRemove();
+        // Todo : rename events
         thisInst.div.dispatchEvent(new CustomEvent('onDropFrom'));
         thisInst.newInst.div.dispatchEvent(new CustomEvent('onDropTo'));
         thisInst.newInst.props.tempLock = false;
