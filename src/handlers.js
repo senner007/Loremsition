@@ -44,12 +44,17 @@ function _addEventHandlers(thisInst) {
 
   function pointerstart(e) {
 
-    if (e.target.localName == 'ul' || thisInst.props.locked == true || thisInst.props.tempLock == true || e.target.locked == true || e.target.localName == 'button') return;
+    
+
+    if (e.target.localName == 'ul' || thisInst.props.locked == true || thisInst.props.tempLock == true  || e.target.localName == 'button') return;
+    
     elt = e.target
 
     if (e.target.localName == 'span' || e.target.localName == 'div') {
       elt = e.target.offsetParent;
     }
+
+    if (elt.locked) return;
 
     e.preventDefault();
     dontTouch = true;
