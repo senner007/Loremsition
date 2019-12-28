@@ -11,6 +11,7 @@ import 'whatwg-fetch';
 
 (function () {
     var path = window.location.pathname.split('/').join('');
+    console.log(path)
     var myRe = /((vertical|horizontal)[-\w]+)/
     var test = myRe.exec(path)[0];
 

@@ -11,7 +11,8 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    http2: true
    },
   output: {
     library: 'Loremsition',
@@ -26,8 +27,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: ["syntax-dynamic-import"]
+            presets: ['@babel/preset-env']
           }
         }
       },
