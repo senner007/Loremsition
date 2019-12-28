@@ -28,9 +28,11 @@ Optimized for mobile devices.
   - Chrome IOS
   - Chrome Android? (should work)
 
- ### Quick setyp:
+ ### Quick setup:
   - see basicSetup folder
 
 ### Dependencies: 
  - none
 
+### TODO :
+ - deploy to heroku with docker
