@@ -1,5 +1,5 @@
 # Loremsition
-High performance lightweight javascript library for sortable layouts and animated rearrangement.
+High performance javascript library for sortable layouts and animated drag and drop rearrangement.
 
 Optimized for mobile devices.
 
