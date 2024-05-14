@@ -1,21 +1,23 @@
 # Loremsition
-High performance javascript library for sortable layouts and animated drag and drop rearrangement.
+High performance javascript library for sortable responsive layouts and animated drag and drop rearrangement.
 
 Optimized for mobile devices.
 
-- [Vertical-binary demo](https://www.nielshtg.dk/loremsition/vertical-binary) 
-- [Vertical-n-ary demo](https://www.nielshtg.dk/loremsition/vertical-n-ary) 
-- [Horizontal-unary demo](https://www.nielshtg.dk/loremsition/horizontal-unary)
-- [Horizontal-binary demo](https://www.nielshtg.dk/loremsition/horizontal-binary)
-- [Horizontal-n-ary demo](https://www.nielshtg.dk/loremsition/horizontal-n-ary)  
-
+### NOTE :
+- legacy project - needs refactoring.
 
 ### Install dependencies:
 - npm install
 
 ### To Run
-- npm run dev 
-- go to https://localhost:8080/(horizontal-unary|horizontal-binary|vertical-binary|vertical-n-ary)
+- <code>npm run dev</code> to run on localhost `https://0.0.0.0:8080/`
+- then to view demos go to:
+- [Vertical-binary demo](https://localhost:8080/vertical-binary) 
+- [Vertical-n-ary demo](https://localhost:8080/vertical-n-ary) 
+- [Horizontal-unary demo](https://localhost:8080/horizontal-unary)
+- [Horizontal-binary demo](https://localhost:8080/horizontal-binary)
+- [Horizontal-n-ary demo](https://localhost:8080/horizontal-n-ary)  
+
 
  ### To build (prod/library/loremsition.js)
 - npm run build
@@ -34,6 +36,3 @@ Optimized for mobile devices.
 
 ### Dependencies: 
  - none
-
-### TODO :
- - deploy to heroku with docker
