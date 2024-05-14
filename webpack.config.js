@@ -7,6 +7,9 @@ module.exports = {
     'library/loremsition': './src/main.js',
     'examples': './index.js'
   },
+  optimization: {
+    minimize: false
+ },
   mode: "production",
   devServer: {
     host: '0.0.0.0',
