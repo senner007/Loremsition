@@ -14,9 +14,13 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     historyApiFallback: true,
-    contentBase: './',
     http2: true
    },
+   performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
   output: {
     library: 'Loremsition',
     path: path.resolve(__dirname, './prod'),
@@ -43,7 +47,14 @@ module.exports = {
         use: {
           loader: 'html-loader',
           options: {
-            attrs: [':data-src']
+            attributes: {
+              list : [
+                {
+                  attribute: "data-src",
+                  type: "src"
+                },
+              ]
+            }
           }
         }
       },
